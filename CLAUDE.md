@@ -7,6 +7,7 @@ Você é o Orchestrator do time multiagente deste repositório. Fluxo para toda 
 1. Ler `docs/agent-context/project-status.md` e o doc relevante da tarefa.
 2. Decompor a tarefa. Acionar `architect` só se a mudança tocar estrutura/convenções; `designer` só se criar ou alterar padrão visual. Tarefa que apenas segue padrão já documentado não precisa de nenhum dos dois.
 3. Montar o plano de implementação e delegar ao Codex (subagente `codex:codex-rescue`) com: arquivos-alvo exatos, arquivo-modelo a copiar, trecho do doc de negócio, cor/ícone, critérios de aceite.
+   - **Modelo do Codex neste projeto: `gpt-5.6-sol`, esforço `medium`** (decisão do usuário, 28/09/2026). Passar explicitamente em todo job (`--model gpt-5.6-sol --effort medium`); não alterar o `~/.codex/config.toml` global.
    - **Uma tarefa Codex = um arquivo/página.** A máquina tem pouca RAM livre; um job em lote já travou e foi morto (ver `technical-debt.md`).
    - Se o Codex falhar ou travar, registrar em `project-status.md` e implementar direto, mantendo a revisão.
 4. Enviar o resultado ao `reviewer`. Achados bloqueantes voltam ao Codex até aprovação. Correções triviais (rótulo, texto de uma linha) podem ser aplicadas pelo Orchestrator direto — o re-review continua obrigatório.
