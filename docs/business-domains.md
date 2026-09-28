@@ -631,6 +631,8 @@ Back Order
 = demanda liberada no fluxo regular, porém ainda não atendida
 ```
 
+> **Nota de implementação (28/09/2026):** por decisão do usuário, o domínio passa a se chamar **Fulfillment**, com estado final **Released** para o projeto. Back Order é processo inerente à operação, não ao projeto Abnormal Order, e aparece no site só como nota de fora de escopo. Ver `agent-context/features.md`.
+
 ---
 
 # 17. Governance & Audit Domain

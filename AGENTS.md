@@ -20,8 +20,11 @@ Antes de qualquer mudança, leia `docs/agent-context/` (principalmente `architec
 
 ## Padrão de página de detalhe (`pages/NN-*.html`)
 
-- Copie a estrutura de `pages/02-business-rules-quota.html` (head, `.wrap`, `.back-link`, `.dom-eyebrow`, `.dom-head` + `.dom-badge`, `.dom-question`, `.sec`, bloco "Esclarecido na revisão", "Princípios relacionados", `.nav-footer`).
-- Troque só: `--accent`/`--accent-tint` no `<style>` do head, SVG do badge (o mesmo do card correspondente em `index.html`), `Domínio NN / 07`, título, pergunta, seções, prev/next.
+- Siga o "Padrão de página didática" em `docs/agent-context/design-system.md` (Entrada e saída, regra do doc em `.rule`, `.plain`, exemplos, `.flow-steps`).
+- Base estrutural: `pages/02-business-rules-quota.html` (head, `.wrap`, `.back-link`, `.dom-eyebrow`, `.dom-head` + `.dom-badge`, `.dom-question`, `.sec`, bloco "Esclarecido na revisão", "Princípios relacionados", `.nav-footer`).
+- Por página muda: `--accent`/`--accent-tint` no `<style>` do head, SVG do badge (o mesmo do card correspondente em `index.html`), `Domínio NN / 07 · Mês X`, título, pergunta, seções, prev/next.
+- Meses: N-1 = 01, 02 · N0 = 03, 04 · N+ = 05, 06 · 07 = todos os meses.
+- Todo texto novo em UTF-8 com acentos (é, ã, ç, º, –, →). Texto sem acento é defeito.
 - Links relativos: `../index.html`, `../css/...`, páginas vizinhas sem prefixo.
 - Sequência de navegação: `index → 01 → 02 → 03 → 04 → 05 → 06 → 07 → index`.
 

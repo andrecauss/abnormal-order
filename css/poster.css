@@ -79,16 +79,25 @@ h1 .accent{ color:var(--orange); }
   flex: 0 0 auto; gap:6px; padding: 0 2px; min-width:34px;
 }
 .connector .arrow{ width:26px; height:26px; }
-.connector .clabel{
-  font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; color:var(--muted);
-  text-align:center; line-height:1.35; max-width:100px; letter-spacing:.01em;
-}
 .connector .arrow-v{ display:none; }
 @media (max-width: 900px){
   .connector{ flex-direction:row; min-width:0; width:100%; }
   .connector .arrow-h{ display:none; }
   .connector .arrow-v{ display:block; }
 }
+
+/* ===== MONTH GROUPS ===== */
+#months{ max-width:1160px; margin: clamp(20px,3vw,34px) auto 0; }
+.month-head{ display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 12px; margin-bottom:14px; }
+.month-tag{
+  font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; background:var(--ink-panel); color:#fff; padding:6px 14px; border-radius:100px;
+}
+.month-sub{ font-size:13px; font-style:italic; color:var(--muted); }
+.month-row{ display:flex; flex-wrap:wrap; align-items:stretch; justify-content:center; gap: clamp(10px,1.6vw,20px); }
+.month-row .card{ max-width:460px; }
+.month-link{ display:flex; justify-content:center; padding: clamp(10px,1.6vw,16px) 0; color:var(--muted); }
+.month-link svg{ width:26px; height:26px; }
 
 .card{
   flex: 1 1 260px; max-width:360px;
@@ -123,12 +132,6 @@ a.card:focus-visible, a.gov-panel:focus-visible{ outline:3px solid var(--ink); o
   border-left:3px solid var(--line); padding-left:12px;
 }
 
-.in-tag{
-  font-size:12.5px; padding:8px 12px; border-radius:9px; background:#F5F6F9;
-  border:1px dashed #C9CEDB; color:var(--ink); line-height:1.35;
-}
-.in-tag b{ font-weight:700; }
-
 .card-sum{ font-size:13px; line-height:1.45; color:#232A3D; }
 .chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
 .chip{
@@ -138,17 +141,6 @@ a.card:focus-visible, a.gov-panel:focus-visible{ outline:3px solid var(--ink); o
 
 .spacer{ flex:1; }
 
-.out-label{
-  font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.13em;
-  text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:7px;
-}
-.out-label .dot{ width:7px; height:7px; border-radius:50%; }
-.output-badge{
-  border-radius:13px; padding:16px 18px; font-weight:800; font-size:16px; line-height:1.32;
-}
-.output-badge .sub{ display:block; font-weight:600; font-size:12px; margin-top:4px; opacity:.85; }
-.unconstrained{ border:2px dashed; background:#fff; }
-.constraint-badge{ color:#fff; }
 .card-more{
   font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.1em;
   text-transform:uppercase;
@@ -157,29 +149,21 @@ a.card:hover .card-more, a.gov-panel:hover .card-more{ text-decoration:underline
 
 /* domain color themes */
 .t-blue .domain-badge{ background:var(--blue); } .t-blue .domain-num, .t-blue .card-more{ color:var(--blue);}
-.t-blue .unconstrained{ border-color:var(--blue); color:var(--blue); }
 .t-blue .card-head{ border-top:5px solid var(--blue); }
 
 .t-green .domain-badge{ background:var(--green); } .t-green .domain-num, .t-green .card-more{ color:var(--green);}
-.t-green .unconstrained{ border-color:var(--green); color:var(--green); }
 .t-green .card-head{ border-top:5px solid var(--green); }
 
 .t-purple .domain-badge{ background:var(--purple); } .t-purple .domain-num, .t-purple .card-more{ color:var(--purple);}
-.t-purple .constraint-badge{ background:var(--purple); }
 .t-purple .card-head{ border-top:5px solid var(--purple); }
 
 .t-purple2 .domain-badge{ background:var(--purple-2); } .t-purple2 .domain-num, .t-purple2 .card-more{ color:var(--purple-2);}
-.t-purple2 .constraint-badge{ background:var(--purple-2); }
-.t-purple2 .unconstrained{ border-color:var(--purple-2); color:var(--purple-2); }
 .t-purple2 .card-head{ border-top:5px solid var(--purple-2); }
 
 .t-orange .domain-badge{ background:var(--orange);} .t-orange .domain-num, .t-orange .card-more{ color:var(--orange);}
-.t-orange .constraint-badge{ background:var(--orange);}
 .t-orange .card-head{ border-top:5px solid var(--orange); }
 
 .t-teal .domain-badge{ background:var(--teal);} .t-teal .domain-num, .t-teal .card-more{ color:var(--teal);}
-.t-teal .constraint-badge{ background:var(--teal);}
-.t-teal .unconstrained{ border-color:var(--teal); color:var(--teal); }
 .t-teal .card-head{ border-top:5px solid var(--teal); }
 
 /* ===== GOVERNANCE BAND (cross-cutting) ===== */
