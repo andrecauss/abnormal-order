@@ -34,17 +34,17 @@
 
 ### Forma
 
-- Raios: 18px (cards, painéis), 14–15px (`.box`, `.dom-badge`), 12px (`.ex`, `.mech`, `.scenario`), 100px (chips, botões, pills).
+- Raios: 18px (cards, painéis), 14–15px (`.box`, `.dom-badge`), 12px (`.ex`, `.mech`), 100px (chips, botões, pills).
 - Sombra única: `0 1px 2px rgba(16,24,40,.04), 0 10px 24px -12px rgba(16,24,40,.10)` (cards). Hover de botão: `0 8px 18px -8px rgba(16,24,40,.18)` + `translateY(-1px)`.
 - Responsivo por `flex-wrap` + `clamp()`; breakpoints explícitos só em `poster.css` (640px, 900px).
 
 ### Componentes — páginas de detalhe (`detail.css`)
 
-`.wrap` · `.back-link` · `.dom-eyebrow` · `.dom-head` + `.dom-badge` (56px, SVG 30px) · `.dom-question` · `.sec` (`h2`, `h3`, `p`, `ul` com marcador quadrado em `--accent`) · `.box` + `.lbl` (fórmula/destaque em `--accent-tint`) · `.ex-row` / `.ex` / `.ex-lbl` / `.ex-res` (exemplos numéricos lado a lado) · `table` (header em `--accent-tint`) · `.principle-row` / `.principle-chip` · `.nav-footer` / `.nav-btn` / `.nav-btn.next`.
+`.wrap` · `.back-link` · `.dom-eyebrow` · `.dom-head` + `.dom-badge` (56px, SVG 30px) · `.dom-question` · `.sec` (`h2`, `h3`, `p`, `ul` com marcador quadrado em `--accent`) · `.box` + `.lbl` (fórmula/destaque em `--accent-tint`) · `.ex-row` / `.ex` / `.ex-lbl` / `.ex-res` (exemplos numéricos lado a lado) · `table` (header em `--accent-tint`) · `.principle-row` / `.principle-chip` · `.mech-grid` / `.mech` / `.mech-badge` / `.mech-num` / `.mech-anytime` / `.mech-title` (mecanismos em sequência, cor via `--accent`) · `.nav-footer` / `.nav-btn` / `.nav-btn.next`.
 
 ### Componentes — pôster (`poster.css`)
 
-`.card` + `.card-head` / `.card-body` · `.domain-badge` · `.question` · `.step-tag` · `.in-tag` · `ul.activities` · `.tinted-box` · `.chips` / `.chip` · `.output-badge` (`.unconstrained` / `.constraint-badge`) · `.connector` · `.mech-grid` / `.mech` / `.mech-anytime` · `.balance-banner` · `.scenario-row` / `.scenario` (`.s-green`, `.s-red`) · `.gov-panel` / `.gov-col` · `.review-card` / `.review-status` · `.metric-panel` · `.principle-chip` · `.legend-row`.
+`.card` + `.card-head` / `.card-body` · `.domain-badge` · `.question` · `.step-tag` · `.in-tag` · `.card-sum` · `.card-more` · `.chips` / `.chip` · `.output-badge` (`.unconstrained` / `.constraint-badge`) · `.connector` · `.gov-panel` · `.review-card` / `.review-status` · `.metric-panel` · `.principle-chip` · `.legend-row`.
 
 ### Ícones
 

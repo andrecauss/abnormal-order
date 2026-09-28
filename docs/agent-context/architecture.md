@@ -9,11 +9,11 @@ abnormal_order/
 │   └── NN-<slug>.html          uma página de detalhe por domínio (01–07)
 ├── css/
 │   ├── base.css                reset + tokens globais (carregado por todas as páginas)
-│   ├── poster.css              só index.html (cards, conectores, .mech, .scenario, governance, review…)
+│   ├── poster.css              index.html e template (cards-resumo, conectores, governance, review…)
 │   └── detail.css              só pages/*.html (.wrap, .dom-*, .sec, .box, .ex, tabela, .nav-footer)
 ├── templates/
 │   ├── template_visual.html    referência visual original — NÃO editar
-│   └── template-draft.css
+│   └── template-draft.css      regras só do template (inclui as que saíram de poster.css)
 ├── docs/
 │   ├── business-domains.md     fonte de verdade do negócio
 │   ├── BRIEFING_claude_code.md especificação de conteúdo das páginas 02–07
@@ -26,7 +26,7 @@ abnormal_order/
 
 ### Convenções
 
-- **Carregamento de CSS:** `index.html` → `base.css` + `poster.css`. `pages/*.html` → `../css/base.css` + `../css/detail.css`. Nenhuma página carrega os dois CSS específicos.
+- **Carregamento de CSS:** `index.html` → `base.css` + `poster.css`. `templates/template_visual.html` → `base.css` + `poster.css` + `template-draft.css` (apagar regra de `poster.css` exige checar o template). `pages/*.html` → `../css/base.css` + `../css/detail.css`. Nenhuma página carrega os dois CSS específicos.
 - **Tema por página de detalhe:** `<style>:root{ --accent:…; --accent-tint:…; }</style>` no `<head>`, sobrescrevendo o default azul de `detail.css`. A página 01 usa o default.
 - **Nomes de arquivo:** `pages/NN-kebab-case.html`, NN = número do domínio.
 - **Navegação:** `index → 01 → … → 07 → index` via `.nav-footer`; `.back-link` sempre para `../index.html`.

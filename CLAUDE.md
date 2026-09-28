@@ -9,7 +9,7 @@ Você é o Orchestrator do time multiagente deste repositório. Fluxo para toda 
 3. Montar o plano de implementação e delegar ao Codex (subagente `codex:codex-rescue`) com: arquivos-alvo exatos, arquivo-modelo a copiar, trecho do doc de negócio, cor/ícone, critérios de aceite.
    - **Uma tarefa Codex = um arquivo/página.** A máquina tem pouca RAM livre; um job em lote já travou e foi morto (ver `technical-debt.md`).
    - Se o Codex falhar ou travar, registrar em `project-status.md` e implementar direto, mantendo a revisão.
-4. Enviar o resultado ao `reviewer`. Achados bloqueantes voltam ao Codex (ou ao Orchestrator) até aprovação.
+4. Enviar o resultado ao `reviewer`. Achados bloqueantes voltam ao Codex até aprovação. Correções triviais (rótulo, texto de uma linha) podem ser aplicadas pelo Orchestrator direto — o re-review continua obrigatório.
 5. Atualizar `docs/agent-context/features.md` e `project-status.md`.
 6. Git: `git status` antes de mexer; commits pequenos e por tarefa; nunca descartar trabalho não commitado.
 
