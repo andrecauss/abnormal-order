@@ -6,11 +6,11 @@ Escopo: site é referência estática (HTML/CSS, sem backend). "IMPLEMENTED" = c
 
 Taxonomia: `IMPLEMENTED` · `PARTIALLY_IMPLEMENTED` · `IMPLEMENTED_DIFFERENTLY` (divergência intencional do doc, registrada na revisão) · `PLACEHOLDER` · `BROKEN_OR_INCOMPLETE`.
 
-## CURRENT STATE (28/09/2026, fim da rodada 2)
+## CURRENT STATE (28/09/2026, fim da rodada 3)
 
 O índice agrupa os domínios pelo mês em que rodam — **Mês N-1** (01, 02), **Mês N0** (03, 04), **Mês N+** (05, 06) — com Governance & Audit (07) como faixa transversal. Cada card traz pergunta, resumo de 1–2 frases e "Ver detalhes →"; input e output ficam nas páginas.
 
-Cada página é didática: "Entrada e saída" no topo e, por seção, a regra citada do doc (`.rule`), a explicação em linguagem simples (`.plain`), exemplos e fluxo em passos.
+Cada página é didática e visual: "Entrada e saída" no topo e, por seção, explicação em linguagem simples (`.plain`), exemplos desenhados (barras, fila, cartão de auditoria) e fluxo em passos. Sem citações do doc (decisão do usuário, 28/09). Seções têm id estável para links.
 
 | # | Domínio | Mês | Página | Status | Observação |
 |---|---|---|---|---|---|
@@ -21,6 +21,7 @@ Cada página é didática: "Entrada e saída" no topo e, por seção, a regra ci
 | 5 | Release Management | N+ | `pages/05-release-management.html` | IMPLEMENTED_DIFFERENTLY | 4 mecanismos. Checagem do Planning LT mensal (revisão 20.3), não diária (doc §15.2). Revisões 20.2–20.4. |
 | 6 | Fulfillment | N+ | `pages/06-fulfillment.html` | IMPLEMENTED_DIFFERENTLY | Renomeado de "Fulfillment & Back Order" (decisão 28/09). Estado final do projeto = Released; Back Order só como nota fora de escopo. |
 | 7 | Governance & Audit | todos | `pages/07-governance-audit.html` | IMPLEMENTED | §17.1–17.3, revisões 20.1 e 20.4. |
+| — | Exemplo de ponta a ponta | N-1 → N+ | `pages/exemplo-ponta-a-ponta.html` + `index.html#e2e` | IMPLEMENTED | Caso ilustrativo (Cliente A, PN-ABC, maio) passando pelos 7 domínios, com links para as seções das páginas. |
 | — | Navegação índice → páginas | — | `index.html` (cards e `.gov-panel` são `<a>`) | IMPLEMENTED | Sequência prev/next `index → 01 → … → 07 → index`. |
 | — | Estados conceituais (§18, com CANCELLED) | — | `index.html#lifecycle` + páginas 03/04 | IMPLEMENTED | Ribbon resumido: 4 passos até "Fulfillment · Released" + saída direta On Hold → Cancelado. Caminhos Normal e Segregation OFF detalhados nas páginas 03 e 04. |
 | — | Princípios centrais (§19, 16 itens) | — | `index.html#principles` + chips nas páginas | IMPLEMENTED | Índice resumido com 7 (decisão do usuário, 28/09); os demais em "Princípios relacionados" das páginas. |

@@ -4,13 +4,14 @@
 
 ```
 abnormal_order/
-├── index.html                  pôster: header + lifecycle, 6 cards em 3 grupos por mês (#months: N-1, N0, N+), #governance, #review, #metrics, #principles, #footer
+├── index.html                  pôster: header + lifecycle, 6 cards em 3 grupos por mês (#months: N-1, N0, N+), #governance, #e2e (link para o exemplo), #review, #metrics, #principles, #footer
 ├── pages/
-│   └── NN-<slug>.html          uma página didática por domínio (01–07; 06 = 06-fulfillment.html)
+│   ├── NN-<slug>.html          uma página didática por domínio (01–07; 06 = 06-fulfillment.html), seções com id estável (s4-2…)
+│   └── exemplo-ponta-a-ponta.html  um caso ilustrativo passando pelos 7 domínios, com links para as seções
 ├── css/
 │   ├── base.css                reset + tokens globais (carregado por todas as páginas)
 │   ├── poster.css              index.html e template (cards-resumo, conectores, governance, review…)
-│   └── detail.css              só pages/*.html (.wrap, .dom-*, .sec, .box, .ex, .rule, .plain, .flow-steps, tabela, .nav-footer)
+│   └── detail.css              só pages/*.html (.wrap, .dom-*, .sec, .box, .ex, .plain, .flow-steps, visuais .bar/.queue/.audit, .e2e-links, tabela, .nav-footer)
 ├── templates/
 │   ├── template_visual.html    referência visual original — NÃO editar
 │   └── template-draft.css      regras só do template (inclui as que saíram de poster.css)

@@ -86,6 +86,10 @@ Exemplo de seção (§7.1, barra de capacidade):
 </div>
 ```
 
+### Exemplo de ponta a ponta (`pages/exemplo-ponta-a-ponta.html`)
+
+Um caso ilustrativo com números fixos. Cada passo é um `.sec id="passo-N"` com a cor do domínio via `style="--accent:…; --accent-tint:…"`, um `.plain` curto, um visual e uma linha `.e2e-links` com links para as seções das páginas (`01-demand-forecast.html#s3-1`…). **Se uma seção de página mudar de id, atualizar os links do exemplo.**
+
 ### Componentes — pôster (`poster.css`)
 
 `#months` / `.month-group` / `.month-head` / `.month-tag` / `.month-sub` / `.month-row` / `.month-link` (grupos por mês N-1 · N0 · N+) · `.card` + `.card-head` / `.card-body` · `.domain-badge` · `.question` · `.step-tag` · `.card-sum` · `.card-more` · `.chips` / `.chip` · `.connector` (só setas) · `.gov-panel` · `.review-card` / `.review-status` · `.metric-panel` · `.principle-chip` · `.legend-row`. `.in-tag`, `.output-badge`, `.clabel` e afins só existem em `templates/template-draft.css` (usados pelo template visual).

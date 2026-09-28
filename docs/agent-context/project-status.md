@@ -1,6 +1,20 @@
 # Project Status
 
-## CURRENT STATE (28/09/2026)
+## CURRENT STATE (28/09/2026, rodada 3)
+
+Rodada 3 concluída: citações do doc removidas das 7 páginas; exemplos viraram visuais (barras de capacidade/limite, fila, linha do tempo, ícones de fluxo, cartão de auditoria); seções com id estável; nova página **Exemplo de ponta a ponta** com link no índice. Codex passa a usar `gpt-5.6-sol`, esforço médio.
+
+### Log da rodada 3
+
+| Item | Quem | Review |
+|---|---|---|
+| Spec dos visuais | Designer | — |
+| Componentes visuais em `detail.css` | Orchestrator (CSS do Designer, com correção da legenda) | — |
+| Páginas 01–07 sem citação + visuais + ids | Codex (uma por job) | 02 e 03 reprovadas 1× (ressalva do §4.4; condição do cancelamento no §9) → corrigidas; demais aprovadas com ajustes menores |
+| Exemplo de ponta a ponta + link no índice | Codex (página) / Orchestrator (índice) | ver revisão |
+| CSS morto da `.rule` removido | Orchestrator | verificado no browser |
+
+## Estado anterior (rodada 2)
 
 Rodada 2 concluída: índice agrupado por mês (N-1 / N0 / N+ + Governance transversal), input/output movidos para as páginas, as 7 páginas reescritas no padrão didático (regra do doc + "Em poucas palavras" + exemplos + fluxo), e "Fulfillment & Back Order" renomeado para Fulfillment (estado final Released). Branch `20260927` publicada como `main`.
 
