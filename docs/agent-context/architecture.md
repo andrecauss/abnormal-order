@@ -17,7 +17,6 @@ abnormal_order/
 ├── docs/
 │   ├── business-domains.md     fonte de verdade do negócio
 │   ├── BRIEFING_claude_code.md especificação de conteúdo das páginas 02–07
-│   ├── 01-architecture-overview.md  doc histórico (terminologia antiga)
 │   └── agent-context/          memória compartilhada dos agentes
 ├── AGENTS.md                   regras para o Coder (Codex)
 ├── CLAUDE.md                   regras do Orchestrator (importa AGENTS.md)

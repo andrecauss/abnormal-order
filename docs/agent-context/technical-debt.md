@@ -10,7 +10,7 @@
 4. **Divergências doc × site (intencionais):** FIFO key (doc §10.2 timestamp → site Nº Ordem de Venda + Linha, revisão 20.6) e cadência do Planning LT (doc §15.2 diária → site mensal, revisão 20.3). E, desde 28/09, **Fulfillment** (doc §16 "Fulfillment & Back Order" → site "Fulfillment", estado final Released, Back Order fora de escopo). O doc tem nota apontando para cada uma.
 5. **`#principles` do índice** mostra 7 dos 16 princípios de §19; **`#lifecycle`** mostra só o caminho feliz (sem ON HOLD → CANCELLED). Pendente decisão do usuário se é resumo intencional.
 6. **Sem verificação automatizada.** Links e layout conferidos manualmente no browser via servidor local (`.claude/launch.json`). Abrir por `file://` no painel de preview do app não carrega o CSS.
-7. **`docs/01-architecture-overview.md`** usa terminologia anterior (Empresa–Material). Pode confundir agentes; não é referência do site.
+7. ~~`docs/01-architecture-overview.md`~~ (terminologia antiga) — removido da `main` pelo usuário em 28/09/2026.
 
 ## RECOMMENDATIONS
 
