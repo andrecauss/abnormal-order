@@ -24,7 +24,7 @@
   </div>
   <div class="dom-question">Onde a quantidade Abnormal fica até ser liberada — e em que ordem ela sai da fila?</div>
 
-  <div class="sec">
+  <div class="sec" id="entrada-saida">
     <h2>Entrada e saída</h2>
     <div class="ex-row io">
       <div class="ex">
@@ -40,95 +40,60 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s10">
     <h2>10 · Quando entra em On Hold</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §10</div>
-      <p>Quando:</p>
-      <code>Classification = ON<br/>Segregation = ON</code>
-      <p>a quantidade Abnormal é colocada em:</p>
-      <code>ON HOLD</code>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Abnormal com Segregation ligada vai para a fila.</p>
-      <p>Só a parte Abnormal. O Normal segue.</p>
+      <p>A quantidade Abnormal entra em On Hold somente quando Classification = ON e Segregation = ON.</p>
+      <p>Só a parte Abnormal entra. O Normal segue.</p>
       <p>Com Segregation OFF, o Abnormal segue no fluxo normal.</p>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s10-1">
     <h2>10.1 · Carteira On Hold</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §10.1</div>
-      <p>As quantidades permanecem em carteira até ocorrer um evento de saída.</p>
-      <p>A gestão é feita por <b>PN</b>.</p>
-      <p>Para cada PN existe uma fila global reunindo:</p>
-      <ul>
-        <li>todos os clientes;</li>
-        <li>todos os segmentos;</li>
-        <li>todos os canais.</li>
-      </ul>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Uma fila por peça (PN).</p>
-      <p>Todos os clientes juntos, sem separar segmento ou canal.</p>
-      <p>Fica lá até ser liberada ou cancelada.</p>
+      <p>A quantidade Abnormal fica em carteira até ocorrer um evento de saída.</p>
+      <p>A gestão é feita por PN.</p>
+      <p>Para cada PN existe uma fila global com todos os clientes, segmentos e canais.</p>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s10-2">
     <h2>10.2 · FIFO</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §10.2 (chave atualizada na revisão 20.6)</div>
-      <p>A carteira utiliza FIFO.</p>
-      <p>A ordem é definida pela:</p>
-      <code>Nº da Ordem de Venda + Linha</code>
-      <p>Essa referência permanece durante todo o período On Hold.</p>
-      <p>Pedidos cancelados saem da fila.</p>
-      <p>Pedidos liberados também saem definitivamente da fila.</p>
-      <p><b>Revisão 20.6:</b> substitui a data/hora original de entrada do pedido — sem timestamp, timezone ou empate.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>A fila tem ordem fixa: número do pedido + linha.</p>
+      <p>A fila tem ordem fixa: Nº da Ordem de Venda + Linha (revisão 20.6, sem data/hora).</p>
       <p>O primeiro da fila é o menor Nº de OV + Linha.</p>
-      <p>Cancelou ou liberou? Sai da fila de vez.</p>
+      <p>Essa referência permanece durante todo o período On Hold.</p>
+      <p>Linhas canceladas ou liberadas saem definitivamente da fila.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Ilustrativo</div>
-        <code>OV 1001-10<br/>OV 1001-20<br/>OV 1003-10</code>
+        <ol class="queue" aria-label="Fila On Hold do PN, na ordem Nº OV + Linha">
+          <li>OV 1001-10</li>
+          <li>OV 1001-20</li>
+          <li>OV 1003-10</li>
+        </ol>
+        <div class="q-exits">
+          <span class="q-exit">✓ Liberada → 05</span>
+          <span class="q-exit is-out">✕ Cancelada</span>
+        </div>
         <div class="ex-res">Ordenado por OV + Linha, independentemente do cliente</div>
       </div>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="saidas">
     <h2>Saídas da fila</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · docs §9 e §11</div>
-      <p>Quando cancelada:</p>
-      <ul>
-        <li>sai da fila On Hold;</li>
-        <li>deixa de participar dos mecanismos futuros de liberação;</li>
-        <li>filtros do acumulado histórico passam a desconsiderar sua quantidade;</li>
-        <li>sua classificação histórica Abnormal permanece.</li>
-      </ul>
-      <p>Existem quatro mecanismos principais de liberação:</p>
-      <ol>
-        <li><b>Monthly Reconciliation</b></li>
-        <li><b>Inventory Release</b></li>
-        <li><b>Manual Release</b></li>
-        <li><b>Planning Lead Time Release</b></li>
-      </ol>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>A linha sai por cancelamento ou liberação.</p>
+      <p>Quando cancelada, sai da fila, deixa os mecanismos futuros de liberação, deixa de contar no acumulado histórico e mantém a classificação Abnormal.</p>
       <p>Liberação acontece no domínio 05.</p>
-      <p>A classificação Abnormal continua.</p>
+      <p>Os mecanismos são Monthly Reconciliation, Inventory Release, Manual Release e Planning Lead Time Release.</p>
     </div>
     <ol class="flow-steps">
       <li><span class="fs-num">1</span>Abnormal com Segregation ON</li>
