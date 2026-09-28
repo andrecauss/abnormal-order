@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>02 · Business Rules &amp; Quota — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+<style>
+  :root{ --accent:#0C8A5E; --accent-tint:#E7F7F0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 02 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2 L20 5 V11 C20 16.2 16.4 20.3 12 22 C7.6 20.3 4 16.2 4 11 V5 Z"/><path d="M8.3 12 L11 14.7 L15.7 9.3"/></svg></div>
+    <h1>Business Rules &amp; Quota</h1>
+  </div>
+  <div class="dom-question">Qual é o limite mensal permitido para este Customer–PN — e o que acontece quando a regra muda no meio da competência?</div>
+
+  <div class="sec">
+    <h2>4.1 · Regra por PN</h2>
+    <p>Cada PN pertence a <b>uma única regra aplicável</b>, contendo no mínimo quatro parâmetros:</p>
+    <ul>
+      <li><b>Upper Limit %</b> — percentual de tolerância acima do forecast</li>
+      <li><b>Minimum Quantity</b> — piso mínimo do limite, independente do forecast</li>
+      <li><b>Classification Flag</b> — liga/desliga a lógica Abnormal para o PN</li>
+      <li><b>Segregation Flag</b> — liga/desliga a segregação em On Hold</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>4.2 · Limite mensal Customer–PN</h2>
+    <p>A Minimum Quantity funciona como <b>piso do limite</b>, não como tolerância adicional somada ao forecast.</p>
+    <div class="box">
+      <div class="lbl">Fórmula</div>
+      <code>Customer–PN Final Limit = MAX(Forecast Customer–PN × (1 + Upper Limit%), Minimum Quantity)</code>
+    </div>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">Exemplo 1</div>
+        <code>Forecast = 100<br/>Upper Limit = 20%<br/>Min Qty = 10</code>
+        <div class="ex-res">Final Limit = 120</div>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">Exemplo 2</div>
+        <code>Forecast = 3<br/>Upper Limit = 20%<br/>Min Qty = 10<br/>(3 × 1.20 = 3.6)</code>
+        <div class="ex-res">Final Limit = 10</div>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">Exemplo 3</div>
+        <code>Forecast = 0<br/>Min Qty = 10</code>
+        <div class="ex-res">Final Limit = 10</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>4.3 · Classification e Segregation</h2>
+    <p>Os dois flags são dependentes entre si. Estados válidos:</p>
+    <table>
+      <tr><th>Classification</th><th>Segregation</th><th>Comportamento</th></tr>
+      <tr><td>OFF</td><td>OFF</td><td>PN não participa da lógica Abnormal</td></tr>
+      <tr><td>ON</td><td>OFF</td><td>Quantidade pode ser classificada Abnormal, mas segue no fluxo normal</td></tr>
+      <tr><td>ON</td><td>ON</td><td>Quantidade Abnormal é segregada em On Hold</td></tr>
+    </table>
+    <p>Não existe conceitualmente <b>Classification OFF + Segregation ON</b>.</p>
+  </div>
+
+  <div class="sec">
+    <h2>4.4 · Alteração de regras durante a competência</h2>
+    <p>As regras podem ser alteradas durante uma competência ativa. A alteração, isoladamente, <b>não modifica os cálculos existentes</b>.</p>
+    <p>Para ter efeito, o processo completo precisa ser reexecutado, na ordem:</p>
+    <ul>
+      <li>Histórico</li>
+      <li>Representatividade</li>
+      <li>Distribuição do forecast</li>
+      <li>Quota / limite</li>
+    </ul>
+    <p>Tecnicamente, o recálculo pode produzir reclassificações retroativas — embora isso não faça parte do processo operacional esperado.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Esclarecido na revisão de 27/09</h2>
+    <div class="box">
+      <div class="lbl">Seção 20.5 do doc</div>
+      <p><b>Pergunta:</b> Alteração de regra + recálculo pode gerar classificações conflitantes na mesma competência?</p>
+      <p><b>Decisão:</b> Sim, tecnicamente pode. Não há trava automática — a responsabilidade é do usuário que executa o recálculo.</p>
+    </div>
+    <p><a href="../index.html#review" style="color:var(--accent); font-weight:700;">Ver todos os esclarecimentos da revisão →</a></p>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">Minimum Quantity é piso, não tolerância adicional</div>
+      <div class="principle-chip">Um PN pertence a uma única regra aplicável</div>
+      <div class="principle-chip">Classification OFF + Segregation ON não existe</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="01-demand-forecast.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Anterior: Demand &amp; Forecast</a>
+    <a class="nav-btn next" href="03-order-classification.html">Próximo: Order Classification<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>

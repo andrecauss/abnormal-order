@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>01 · Demand &amp; Forecast — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 01 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="12" width="4.2" height="9"/><rect x="9.9" y="6.5" width="4.2" height="14.5"/><rect x="16.8" y="2.5" width="4.2" height="18.5"/></svg></div>
+    <h1>Demand &amp; Forecast</h1>
+  </div>
+  <div class="dom-question">Qual é a participação histórica de cada combinação Customer–PN dentro do forecast do PN — e como isso vira o forecast individual de cada cliente?</div>
+
+  <div class="sec">
+    <h2>3.1 · Histórico de Demanda</h2>
+    <p>Para cada combinação Customer–PN, utiliza-se uma <b>janela móvel dos 6 meses imediatamente anteriores</b> à competência.</p>
+    <ul>
+      <li>Todos os seis meses participam do cálculo — nenhum é descartado</li>
+      <li>Meses sem pedidos entram com quantidade <b>zero</b></li>
+      <li>Os zeros reduzem a média histórica da combinação</li>
+      <li>A janela é recalculada a cada nova competência</li>
+    </ul>
+    <div class="box">
+      <div class="lbl">Fórmula</div>
+      <code>Historical Average Customer–PN = Soma das quantidades dos últimos 6 meses / 6</code>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>3.2 · Representatividade do Cliente</h2>
+    <p>Após calcular a média de cada Customer–PN, calcula-se a participação daquele cliente no total histórico do PN. Essa participação é o que distribui o forecast mensal do PN entre os clientes.</p>
+    <div class="box">
+      <div class="lbl">Fórmula</div>
+      <code>Customer Representativeness (%) = Historical Average Customer–PN / Sum of Historical Averages for PN</code>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>3.3 · Customer–PN sem histórico</h2>
+    <p>Quando uma combinação Customer–PN não possui histórico nos seis meses — inclui clientes novos —, a representatividade é <b>0%</b>. O tratamento posterior é feito pela regra de <b>Minimum Quantity</b> (domínio Business Rules &amp; Quota).</p>
+  </div>
+
+  <div class="sec">
+    <h2>3.4 · Override manual</h2>
+    <p>É permitido ajustar manualmente a quota de um Customer–PN — por exemplo em mudança de código de cliente, necessidade de preservar referência histórica que não existe na nova chave, ou situações excepcionais conhecidas pelo negócio.</p>
+    <ul>
+      <li>Vale <b>somente para a competência específica</b></li>
+      <li>Não exige rebalanceamento das quotas dos demais clientes</li>
+      <li>Pode fazer a soma das quotas individuais divergir do forecast total do PN</li>
+      <li>Na competência seguinte, volta automaticamente à metodologia padrão — salvo novo override</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>3.5 · Forecast mensal</h2>
+    <p>O forecast é recebido no nível <b>PN</b> e distribuído aos clientes conforme a representatividade histórica calculada acima.</p>
+    <div class="box">
+      <div class="lbl">Fórmula</div>
+      <code>Forecast Customer–PN = Forecast PN × Customer Representativeness (%)</code>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">A competência mensal é independente</div>
+      <div class="principle-chip">O histórico de seis meses determina a representatividade</div>
+      <div class="principle-chip">O forecast nasce no PN e é distribuído aos clientes</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Todos os domínios</a>
+    <a class="nav-btn next" href="02-business-rules-quota.html">Próximo: Business Rules &amp; Quota<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>

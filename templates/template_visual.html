@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abnormal Order — Business Domains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/poster.css">
+<link rel="stylesheet" href="template-draft.css">
+</head>
+<body>
+<div id="poster">
+
+  <header>
+    <div class="eyebrow-top">S&amp;OP · Sales &amp; Operations Planning — Training Reference</div>
+    <h1>DEMAND &amp; SUPPLY PLANNING</h1>
+    <div class="subtitle">The Demand &amp; Supply backbone of the monthly S&amp;OP cycle — from Unconstrained Forecast to Capacity Validation and Constrained Plan</div>
+    <div class="qbar">How do we go from historical data and business input to a <b>viable plan</b> — the core question every S&amp;OP cycle must answer, balancing capacity, constraints, cost, and customer service?</div>
+
+    <div id="sop-cycle">
+      <div class="sop-cycle-eyebrow">S&amp;OP Cycle · Where This Process Fits</div>
+      <div class="sop-cycle-row">
+        <div class="sop-step" style="--sc:var(--blue); --sct:var(--blue-tint);"><span class="sop-step-num">1</span>Demand Review</div>
+        <svg class="sop-chevron" viewBox="0 0 24 24" fill="none" stroke="#A7AEC0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        <div class="sop-step" style="--sc:var(--green); --sct:var(--green-tint);"><span class="sop-step-num">2</span>Supply Review</div>
+        <svg class="sop-chevron" viewBox="0 0 24 24" fill="none" stroke="#A7AEC0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        <div class="sop-step" style="--sc:var(--purple); --sct:var(--purple-tint);"><span class="sop-step-num">3</span>Reconciliation / Pre-S&amp;OP</div>
+        <svg class="sop-chevron" viewBox="0 0 24 24" fill="none" stroke="#A7AEC0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        <div class="sop-step" style="--sc:var(--orange); --sct:var(--orange-tint);"><span class="sop-step-num">4</span>Executive S&amp;OP</div>
+      </div>
+    </div>
+  </header>
+
+  <div id="flow">
+
+    <!-- ============ CARD 1 — DEMAND PLANNING ============ -->
+    <div class="card t-blue" id="card1">
+      <div class="card-head">
+        <div class="domain-row">
+          <div class="domain-badge"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="12" width="4.2" height="9"/><rect x="9.9" y="6.5" width="4.2" height="14.5"/><rect x="16.8" y="2.5" width="4.2" height="18.5"/></svg></div>
+          <div><div class="domain-num">01</div><div class="domain-title">Demand Planning</div></div>
+        </div>
+        <div class="question">"What do we expect customers to demand?"</div>
+        <div class="step-tag" style="color:var(--blue); border-color:#C9D6FB;">S&amp;OP · <b>Demand Review</b></div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
+          <ul class="activities">
+            <li>Data collection &amp; cleansing</li>
+            <li>Statistical forecasting, smoothing &amp; outlier treatment</li>
+            <li>Forecastable vs. non-forecastable classification &amp; tagging</li>
+            <li>Baseline creation</li>
+            <li>Generate unconstrained forecast</li>
+          </ul>
+        </div>
+        <div class="tinted-box">
+          <div class="sec-label" style="margin-bottom:4px;">Enrichment / collaboration</div>
+          Baseline is enriched with future business input:
+          <div class="chips">
+            <span class="chip">Pricing &amp; Promotions</span><span class="chip">Commercial / Sales</span>
+            <span class="chip">Marketing</span><span class="chip">Product Mgmt</span>
+            <span class="chip">Warranty</span><span class="chip">Recall</span><span class="chip">Other tagged areas</span>
+          </div>
+        </div>
+        <div class="msg-strip">"We start with data, but we finish with the business."</div>
+        <div class="spacer"></div>
+        <div>
+          <div class="out-label"><span class="dot" style="background:var(--blue);"></span>OUTPUT · UNCONSTRAINED</div>
+          <div class="output-badge unconstrained">UNCONSTRAINED DEMAND<span class="sub">(Unconstrained Forecast) — main handoff to Inventory Planning</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#2456E0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
+      <svg class="arrow arrow-v" viewBox="0 0 24 24" fill="none" stroke="#2456E0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 13l6 6 6-6"/></svg>
+      <div class="clabel">UNCONSTRAINED<br/>FORECAST</div>
+    </div>
+
+    <!-- ============ CARD 2 — INVENTORY PLANNING ============ -->
+    <div class="card t-green" id="card2">
+      <div class="card-head">
+        <div class="domain-row">
+          <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 2 L21.5 7 L12 12 L2.5 7 Z"/><path d="M2.5 12 L12 17 L21.5 12"/><path d="M2.5 17 L12 22 L21.5 17"/></svg></div>
+          <div><div class="domain-num">02</div><div class="domain-title">Inventory Planning</div></div>
+        </div>
+        <div class="question">"How do we translate demand into inventory and replenishment requirements?"</div>
+        <div class="step-tag" style="color:var(--green); border-color:#BFE7D4;">S&amp;OP · <b>Supply Review</b></div>
+      </div>
+      <div class="card-body">
+        <div class="in-tag">← Input: <b>Unconstrained Demand</b> (Unconstrained Forecast) from Demand Planning</div>
+        <div>
+          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
+          <ul class="activities">
+            <li>Define inventory strategy &amp; policies</li>
+            <li>Cover non-forecastable items / long tail</li>
+            <li>Set safety stock &amp; targets</li>
+            <li>Design replenishment approach</li>
+            <li>Generate unconstrained purchase plan</li>
+          </ul>
+        </div>
+        <div class="tinted-box">
+          <div class="sec-label" style="margin-bottom:4px;">Important concept</div>
+          Demand Planning concentrates forecast effort on <b>forecastable</b> items; <b>non‑forecastable / long‑tail</b> items are covered mainly through inventory policy.
+        </div>
+        <div class="spacer"></div>
+        <div>
+          <div class="out-label"><span class="dot" style="background:var(--green);"></span>OUTPUT · UNCONSTRAINED</div>
+          <div class="output-badge unconstrained">UNCONSTRAINED PURCHASE PLAN<span class="sub">Does not yet consider capacity restrictions</span></div>
+          <div class="out-note">↳ sent to Procurement (validation) and to Warehouse / Logistics (inbound side)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#0C8A5E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
+      <svg class="arrow arrow-v" viewBox="0 0 24 24" fill="none" stroke="#0C8A5E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 13l6 6 6-6"/></svg>
+      <div class="clabel">UNCONSTRAINED<br/>PURCHASE PLAN</div>
+    </div>
+
+    <!-- ============ PARALLEL GROUP — PROCUREMENT + WAREHOUSE/LOGISTICS ============ -->
+    <div id="parallel-group">
+      <div class="parallel-tag">Parallel Capacity Validation</div>
+      <div class="parallel-row">
+
+        <!-- CARD 3 — PROCUREMENT -->
+        <div class="card t-purple" id="card3">
+          <div class="card-head">
+            <div class="domain-row">
+              <div class="domain-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 21 V11 L7.5 13.6 V11 L12.2 13.6 V8 L21 12.4 V21 Z"/></svg></div>
+              <div><div class="domain-num">03</div><div class="domain-title">Procurement — Suppliers &amp; Factories</div></div>
+            </div>
+            <div class="question">"Can suppliers and factories support the purchase plan?"</div>
+            <div class="step-tag" style="color:var(--purple); border-color:#DDCBFA;">S&amp;OP · <b>Supply Review</b></div>
+          </div>
+          <div class="card-body">
+            <div class="in-tag">← Input: <b>Unconstrained Purchase Plan</b> from Inventory Planning</div>
+            <div>
+              <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
+              <ul class="activities">
+                <li>Validate purchase plan with suppliers</li>
+                <li>Validate capacity with factories</li>
+                <li>Evaluate lead times and MOQ</li>
+                <li>Check allocations &amp; other limitations</li>
+                <li>Communicate constraints to Warehouse / Logistics</li>
+              </ul>
+            </div>
+            <div class="tinted-box">
+              <div class="sec-label" style="margin-bottom:6px;">Example constraints</div>
+              <div class="chips">
+                <span class="chip">Supplier capacity</span><span class="chip">Factory capacity</span>
+                <span class="chip">Lead time</span><span class="chip">MOQ</span>
+                <span class="chip">Allocation</span><span class="chip">Supply availability</span>
+              </div>
+            </div>
+            <div class="spacer"></div>
+            <div>
+              <div class="out-label"><span class="dot" style="background:var(--purple);"></span>OUTPUT · CONSTRAINT</div>
+              <div class="output-badge constraint-badge">SUPPLIER &amp; FACTORY<br/>CONSTRAINTS / RESTRICTIONS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4 — WAREHOUSE / LOGISTICS -->
+        <div class="card t-purple2" id="card4">
+          <div class="card-head">
+            <div class="domain-row">
+              <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3 10.5 L12 4 L21 10.5 V21 H3 Z"/><rect x="9.6" y="13.5" width="4.8" height="7.5" fill="currentColor" stroke="none"/></svg></div>
+              <div><div class="domain-num">04</div><div class="domain-title">Warehouse / Logistics</div></div>
+            </div>
+            <div class="question">"Can the operation receive, store, transport and ship the planned volume?"</div>
+            <div class="step-tag" style="color:var(--purple-2); border-color:#D8C8F7;">S&amp;OP · <b>Supply Review</b></div>
+          </div>
+          <div class="card-body">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div class="in-tag">← Input 1 (Inbound): <b>Unconstrained Purchase Plan</b></div>
+              <div class="in-tag">← Input 2 (Outbound): <b>Unconstrained Demand</b> → Shipping / Outbound Plan</div>
+            </div>
+            <div>
+              <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
+              <ul class="activities">
+                <li>Validate inbound &amp; storage capacity</li>
+                <li>Validate warehouse capacity</li>
+                <li>Validate shipping / outbound capacity</li>
+                <li>Validate transportation capacity</li>
+                <li>Consolidate constraints</li>
+              </ul>
+            </div>
+            <div class="tinted-box">
+              <div class="sec-label" style="margin-bottom:6px;">Constraint types</div>
+              <div class="chips">
+                <span class="chip">Inbound</span><span class="chip">Storage</span>
+                <span class="chip">Transportation</span><span class="chip">Shipping capacity</span>
+              </div>
+            </div>
+            <div class="spacer"></div>
+            <div>
+              <div class="out-label"><span class="dot" style="background:var(--purple-2);"></span>OUTPUT · CONSTRAINT</div>
+              <div class="output-badge constraint-badge">WAREHOUSE / LOGISTICS<br/>CONSTRAINTS</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="connector">
+      <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#5E2FC9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
+      <svg class="arrow arrow-v" viewBox="0 0 24 24" fill="none" stroke="#5E2FC9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 13l6 6 6-6"/></svg>
+      <div class="clabel">CONSTRAINTS<br/>CONSOLIDATED</div>
+    </div>
+
+    <!-- ============ CARD 5 — CONSTRAINED PLAN & BUSINESS DECISIONS ============ -->
+    <div class="card t-orange" id="card5" style="max-width:460px;">
+      <div class="card-head">
+        <div class="domain-row">
+          <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.3 L20 5.2 V11 C20 16.2 16.4 20.3 12 22 C7.6 20.3 4 16.2 4 11 V5.2 Z"/><path d="M8.2 12.1 L10.9 14.9 L15.9 9.2"/></svg></div>
+          <div><div class="domain-num">05</div><div class="domain-title">Constrained Plan &amp; Business Decisions</div></div>
+        </div>
+        <div class="question">"Can we execute the plan as-is? If not, what will it cost to achieve the required service level?"</div>
+        <div class="step-tag" style="color:var(--orange); border-color:#F6D2B4;">S&amp;OP · <b>Reconciliation &amp; Executive</b></div>
+      </div>
+      <div class="card-body">
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <div class="in-tag" style="flex:1 1 160px;">← Supplier &amp; Factory Constraints</div>
+          <div class="in-tag" style="flex:1 1 160px;">← Warehouse / Logistics Constraints</div>
+        </div>
+        <div>
+          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
+          <ul class="activities">
+            <li>Consolidate all constraints &amp; identify gaps between plan and capacity</li>
+            <li>Quantify service &amp; financial impact</li>
+            <li>Build constrained plan scenarios and quantify additional costs</li>
+            <li>Present scenarios to Board / Leadership &amp; select preferred scenario</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="sec-label" style="margin:2px 0 10px;">Scenarios for decision</div>
+          <div class="scenario-row">
+            <div class="scenario s-red">
+              <div class="s-title">⚠ LACK OF CAPACITY</div>
+              <ul>
+                <li>Customer service impact</li><li>Potential shortage</li>
+                <li>Delayed supply</li><li>Risk to revenue</li>
+              </ul>
+            </div>
+            <div class="scenario s-orange">
+              <div class="s-title">MAKE / BUY / EXPEDITE</div>
+              <ul>
+                <li>Additional cost</li><li>Spot orders / expediting</li>
+                <li>Additional capacity</li><li>Extra operational effort</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="balance-banner">CUSTOMER SERVICE <span class="x">×</span> COST <span class="x">×</span> CAPACITY</div>
+
+        <div class="spacer"></div>
+        <div>
+          <div class="out-label"><span class="dot" style="background:var(--orange);"></span>OUTPUT · CONSTRAINED</div>
+          <div class="output-badge constraint-badge" style="font-size:18px;">CONSTRAINED PLAN<span class="sub">Validated &amp; Feasible</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /flow -->
+
+  <!-- ===== METRICS ===== -->
+  <div id="metrics">
+    <div class="band-eyebrow"><span>S&amp;OP Success Metrics · Examples</span></div>
+    <div class="metrics-row">
+      <div class="metric-panel">
+        <h3><span class="sw" style="background:var(--blue);"></span>Demand Planning</h3>
+        <div class="chips"><span class="chip">Forecast Accuracy</span><span class="chip">MAPE</span><span class="chip">Bias</span></div>
+      </div>
+      <div class="metric-panel">
+        <h3><span class="sw" style="background:var(--green);"></span>Supply / Inventory</h3>
+        <div class="chips"><span class="chip">Inventory Turns</span><span class="chip">Stockout Rate</span><span class="chip">Service Level / Fill Rate</span><span class="chip">Plan Adherence</span></div>
+      </div>
+      <div class="metric-panel">
+        <h3><span class="sw" style="background:var(--orange);"></span>Business</h3>
+        <div class="chips"><span class="chip">Cost to Serve</span><span class="chip">Additional Cost</span><span class="chip">Customer Service</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PRINCIPLES ===== -->
+  <div id="principles">
+    <div class="band-eyebrow"><span>S&amp;OP Guiding Principles</span></div>
+    <div class="principle-row">
+      <div class="principle-chip">One Set of Numbers</div>
+      <div class="principle-chip">Customer First</div>
+      <div class="principle-chip">Data Driven</div>
+      <div class="principle-chip">End-to-End Collaboration</div>
+      <div class="principle-chip">Transparency</div>
+      <div class="principle-chip">Cost vs. Service Balance</div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div id="footer">
+    <div class="quote">We start with data, enrich the forecast with business intelligence, translate demand into supply requirements, validate capacity and constraints, and ultimately make a business decision balancing customer service and cost — one set of numbers, agreed end-to-end through S&amp;OP.</div>
+    <div class="caption">Demand &amp; Supply Planning · S&amp;OP Process Reference</div>
+    <div class="legend-row">
+      <div class="legend-item"><span class="legend-sw" style="background:var(--blue);"></span>Demand Planning</div>
+      <div class="legend-item"><span class="legend-sw" style="background:var(--green);"></span>Inventory Planning</div>
+      <div class="legend-item"><span class="legend-sw" style="background:var(--purple);"></span>Capacity Validation</div>
+      <div class="legend-item"><span class="legend-sw" style="background:var(--orange);"></span>Decision &amp; Governance</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

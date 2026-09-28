@@ -1,0 +1,38 @@
+/* Regras exclusivas deste rascunho, sem equivalente em css/poster.css */
+
+#sop-cycle{ margin: clamp(18px,2.6vw,26px) auto 0; max-width:960px; }
+.sop-cycle-eyebrow{
+  text-align:center; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700;
+  letter-spacing:.16em; color:var(--muted); text-transform:uppercase; margin-bottom:12px;
+}
+.sop-cycle-row{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px;
+}
+.sop-step{
+  display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; color:var(--sc);
+  background:var(--sct); border:1px solid var(--sc); border-radius:100px; padding:8px 16px 8px 8px;
+}
+.sop-step-num{
+  width:20px; height:20px; border-radius:50%; background:var(--sc); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex:none;
+}
+.sop-chevron{ width:16px; height:16px; flex:none; }
+@media (max-width: 640px){ .sop-chevron{ transform:rotate(90deg); } }
+
+/* ===== parallel group (Procurement + Warehouse) ===== */
+#parallel-group{
+  flex: 1 1 560px; max-width:760px;
+  display:flex; flex-direction:column; gap:14px;
+}
+@media (max-width: 900px){ #parallel-group{ max-width:520px; } }
+.parallel-tag{
+  align-self:center; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700;
+  letter-spacing:.14em; color:var(--muted); text-transform:uppercase;
+  padding:6px 16px; border:1px dashed #C7CCDA; border-radius:100px; background:var(--bg);
+}
+.parallel-row{ display:flex; flex-wrap:wrap; gap:14px; flex:1; }
+.parallel-row .card{ flex:1 1 260px; max-width:none; }
+
+/* variante de cenário exclusiva deste rascunho */
+.s-orange{ background:var(--orange-tint); border:1px solid #F6D2B4; }
+.s-orange .s-title{ color:var(--orange); }
