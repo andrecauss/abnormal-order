@@ -403,7 +403,7 @@ Pedidos cancelados saem da fila.
 
 Pedidos liberados também saem definitivamente da fila.
 
-> **Nota de implementação (27/09/2026):** a revisão registrada em `index.html#review` (item 20.6) substituiu esta chave por **Nº da Ordem de Venda + Linha**, eliminando timestamp/timezone/empate. Ver `implementation-baseline.md`.
+> **Nota de implementação (27/09/2026):** a revisão registrada em `index.html#review` (item 20.6) substituiu esta chave por **Nº da Ordem de Venda + Linha**, eliminando timestamp/timezone/empate. Ver `agent-context/features.md`.
 
 ---
 
@@ -583,7 +583,7 @@ A condição já foi atingida e a linha deve ser liberada quando o sistema detec
 
 A condição é verificada diariamente.
 
-> **Nota de implementação (27/09/2026):** a revisão registrada em `index.html#review` (item 20.3) ajustou essa cadência para **mensal**. Ver `implementation-baseline.md`.
+> **Nota de implementação (27/09/2026):** a revisão registrada em `index.html#review` (item 20.3) ajustou essa cadência para **mensal**. Ver `agent-context/features.md`.
 
 ## 15.3 Liberação
 
