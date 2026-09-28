@@ -35,7 +35,7 @@
   <div id="flow">
 
     <!-- ============ CARD 1 — DEMAND & FORECAST ============ -->
-    <div class="card t-blue" id="card1">
+    <a class="card t-blue" id="card1" href="pages/01-demand-forecast.html">
       <div class="card-head">
         <div class="domain-row">
           <div class="domain-badge"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="12" width="4.2" height="9"/><rect x="9.9" y="6.5" width="4.2" height="14.5"/><rect x="16.8" y="2.5" width="4.2" height="18.5"/></svg></div>
@@ -45,29 +45,15 @@
         <div class="step-tag" style="color:var(--blue); border-color:#C9D6FB;">Janela móvel · <b>6 meses</b></div>
       </div>
       <div class="card-body">
-        <div>
-          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
-          <ul class="activities">
-            <li>Histórico móvel dos 6 meses anteriores à competência</li>
-            <li>Meses sem pedido entram como zero — reduzem a média</li>
-            <li>Cálculo da Representatividade do Customer–PN no PN</li>
-            <li>Distribuição do Forecast PN → Customer–PN</li>
-            <li>Override manual pontual (não retroalimenta os demais)</li>
-          </ul>
-        </div>
-        <div class="tinted-box">
-          <div class="sec-label" style="margin-bottom:4px;">Fórmula</div>
-          <code>Hist. Average = Σ 6 meses / 6</code><br/>
-          <code>Representativeness = Média Cust–PN / Σ Médias do PN</code>
-        </div>
-        <div class="msg-strip">"Cliente novo ou sem histórico = 0% de representatividade."</div>
+        <p class="card-sum">Calcula a representatividade de cada Customer–PN pela média móvel dos 6 meses anteriores (meses sem pedido contam como zero) e distribui o Forecast do PN proporcionalmente.</p>
         <div class="spacer"></div>
         <div>
           <div class="out-label"><span class="dot" style="background:var(--blue);"></span>OUTPUT</div>
           <div class="output-badge unconstrained">FORECAST CUSTOMER–PN<span class="sub">Forecast PN × Representatividade — alimenta a Quota</span></div>
         </div>
+        <span class="card-more">Ver detalhes →</span>
       </div>
-    </div>
+    </a>
 
     <div class="connector">
       <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#2456E0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
@@ -76,7 +62,7 @@
     </div>
 
     <!-- ============ CARD 2 — BUSINESS RULES & QUOTA ============ -->
-    <div class="card t-green" id="card2">
+    <a class="card t-green" id="card2" href="pages/02-business-rules-quota.html">
       <div class="card-head">
         <div class="domain-row">
           <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2 L20 5 V11 C20 16.2 16.4 20.3 12 22 C7.6 20.3 4 16.2 4 11 V5 Z"/><path d="M8.3 12 L11 14.7 L15.7 9.3"/></svg></div>
@@ -87,29 +73,15 @@
       </div>
       <div class="card-body">
         <div class="in-tag">← Input: <b>Forecast Customer–PN</b> (Demand &amp; Forecast)</div>
-        <div>
-          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
-          <ul class="activities">
-            <li>Aplicar Upper Limit % sobre o forecast</li>
-            <li>Minimum Quantity como <b>piso</b> do limite — não tolerância</li>
-            <li>Classification Flag e Segregation Flag (dependentes)</li>
-            <li>Alteração de regra só vale após reexecutar histórico → representatividade → forecast → limite</li>
-          </ul>
-        </div>
-        <div class="tinted-box">
-          <div class="sec-label" style="margin-bottom:4px;">Fórmula</div>
-          <code>Final Limit = MAX(Forecast × (1 + Upper Limit%), Min Qty)</code>
-          <div class="chips">
-            <span class="chip">OFF / OFF → fora da lógica</span><span class="chip">ON / OFF → Abnormal sem segregar</span><span class="chip">ON / ON → vai a On Hold</span>
-          </div>
-        </div>
+        <p class="card-sum">Define o limite mensal: forecast acrescido do Upper Limit %, com Minimum Quantity como piso. As flags Classification e Segregation decidem se o excedente é só classificado ou também segregado.</p>
         <div class="spacer"></div>
         <div>
           <div class="out-label"><span class="dot" style="background:var(--green);"></span>OUTPUT</div>
           <div class="output-badge unconstrained">CUSTOMER–PN FINAL LIMIT<span class="sub">Piso mensal para avaliação em tempo real</span></div>
         </div>
+        <span class="card-more">Ver detalhes →</span>
       </div>
-    </div>
+    </a>
 
     <div class="connector">
       <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#0C8A5E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
@@ -118,7 +90,7 @@
     </div>
 
     <!-- ============ CARD 3 — ORDER CLASSIFICATION ============ -->
-    <div class="card t-purple" id="card3">
+    <a class="card t-purple" id="card3" href="pages/03-order-classification.html">
       <div class="card-head">
         <div class="domain-row">
           <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 L4 13 L9 13 L9 19 M9 19 L9 8 L14 8 L14 19 M14 19 L14 4 L19 4 L19 19"/></svg></div>
@@ -129,27 +101,15 @@
       </div>
       <div class="card-body">
         <div class="in-tag">← Input: <b>Final Limit</b> (Business Rules) + Acumulado Customer+PN+Competência</div>
-        <div>
-          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
-          <ul class="activities">
-            <li>Comparar acumulado mensal vs. limite, por linha de pedido</li>
-            <li>Pedido Urgente: nunca é Abnormal, mas <b>consome</b> o acumulado</li>
-            <li>Normal Qty = MIN(Order Qty, Remaining Limit)</li>
-            <li>Abnormal Qty = Order Qty − Normal Qty</li>
-            <li>Classificação é <b>permanente</b> a partir daqui</li>
-          </ul>
-        </div>
-        <div class="tinted-box">
-          <div class="sec-label" style="margin-bottom:4px;">Exemplo</div>
-          Limite 20 · acumulado 15 · pedido 10 → <b>5 Normal</b> / <b>5 Abnormal</b>
-        </div>
+        <p class="card-sum">Compara em tempo real, por linha, o acumulado do mês com o limite: o que cabe é Normal, o excedente é Abnormal — de forma permanente. Pedido urgente nunca é Abnormal, mas consome o acumulado.</p>
         <div class="spacer"></div>
         <div>
           <div class="out-label"><span class="dot" style="background:var(--purple);"></span>OUTPUT</div>
           <div class="output-badge constraint-badge">NORMAL + ABNORMAL<span class="sub">Abnormal = atributo histórico permanente</span></div>
         </div>
+        <span class="card-more">Ver detalhes →</span>
       </div>
-    </div>
+    </a>
 
     <div class="connector">
       <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#7A3FE0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
@@ -158,7 +118,7 @@
     </div>
 
     <!-- ============ CARD 4 — ON HOLD MANAGEMENT ============ -->
-    <div class="card t-purple2" id="card4">
+    <a class="card t-purple2" id="card4" href="pages/04-on-hold-management.html">
       <div class="card-head">
         <div class="domain-row">
           <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="9.5" rx="1.6"/><path d="M8 10.5 V7.2 a4 4 0 0 1 8 0 V10.5"/></svg></div>
@@ -169,26 +129,15 @@
       </div>
       <div class="card-body">
         <div class="in-tag">← Input: <b>Quantidade Abnormal</b> (Order Classification)</div>
-        <div>
-          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
-          <ul class="activities">
-            <li>Fila <b>global por PN</b> — todos clientes, segmentos e canais</li>
-            <li>FIFO por <b>Nº da Ordem de Venda + Linha</b> (sem timestamp)</li>
-            <li>Cancelamento tira da fila, mas classificação Abnormal permanece</li>
-            <li>Capacidade liberada por cancelamento não reclassifica outras linhas</li>
-          </ul>
-        </div>
-        <div class="tinted-box">
-          <div class="sec-label" style="margin-bottom:4px;">Não existe conceitualmente</div>
-          Classification <b>OFF</b> + Segregation <b>ON</b>
-        </div>
+        <p class="card-sum">Com Segregation ON, o Abnormal entra numa fila global por PN, em FIFO por Nº da Ordem de Venda + Linha. Cancelar tira da fila, mas não apaga a classificação.</p>
         <div class="spacer"></div>
         <div>
           <div class="out-label"><span class="dot" style="background:var(--purple-2);"></span>OUTPUT</div>
           <div class="output-badge unconstrained">ON HOLD<span class="sub">Status temporário — aguarda 1 dos 4 mecanismos de liberação</span></div>
         </div>
+        <span class="card-more">Ver detalhes →</span>
       </div>
-    </div>
+    </a>
 
     <div class="connector">
       <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#5E2FC9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
@@ -197,7 +146,7 @@
     </div>
 
     <!-- ============ CARD 5 — RELEASE MANAGEMENT ============ -->
-    <div class="card t-orange" id="card5" style="max-width:420px;">
+    <a class="card t-orange" id="card5" href="pages/05-release-management.html">
       <div class="card-head">
         <div class="domain-row">
           <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 a7 7 0 1 1 2.1 5"/><path d="M5 16 V12 H9"/></svg></div>
@@ -208,36 +157,15 @@
       </div>
       <div class="card-body">
         <div class="in-tag">← Input: fila <b>On Hold</b> por PN (On Hold Management)</div>
-        <div class="mech-grid">
-          <div class="mech">
-            <div class="mech-badge"><span class="mech-num">1</span>Reconciliation</div>
-            <div class="mech-title">Monthly Reconciliation</div>
-            <ul><li>Externo, via upload</li><li>Por PN, todos os clientes juntos</li><li>Global Ceiling sem Min Qty</li></ul>
-          </div>
-          <div class="mech">
-            <div class="mech-badge"><span class="mech-num">2</span>Inventory</div>
-            <div class="mech-title">Inventory Release</div>
-            <ul><li>Estratégia própria</li><li>Respeita FIFO — não pula a vez</li><li>Fila pode "travar" aqui</li></ul>
-          </div>
-          <div class="mech">
-            <div class="mech-badge"><span class="mech-num">3</span>Backstop</div>
-            <div class="mech-title">Planning Lead Time</div>
-            <ul><li>Início: dia 1 do mês seguinte</li><li>LT vigente, não congelado</li><li>Checagem mensal</li></ul>
-          </div>
-          <div class="mech mech-anytime">
-            <div class="mech-badge"><span class="mech-num">∞</span>A qualquer momento</div>
-            <div class="mech-title">Manual Release</div>
-            <ul><li>Autoridade absoluta do usuário</li><li>Ignora quota / forecast / estoque</li><li>Governança = auditoria</li></ul>
-          </div>
-        </div>
-        <div class="balance-banner">LIBERAÇÃO É DEFINITIVA <span class="x">×</span> ABNORMAL PERMANECE</div>
+        <p class="card-sum">Três mecanismos em sequência (Reconciliation, Inventory, Planning LT como backstop) e o Manual Release a qualquer momento. Toda liberação é definitiva; o Abnormal permanece.</p>
         <div class="spacer"></div>
         <div>
           <div class="out-label"><span class="dot" style="background:var(--orange);"></span>OUTPUT</div>
           <div class="output-badge constraint-badge" style="font-size:16px;">RELEASED<span class="sub">Não retorna ao On Hold — segue ao fluxo regular</span></div>
         </div>
+        <span class="card-more">Ver detalhes →</span>
       </div>
-    </div>
+    </a>
 
     <div class="connector">
       <svg class="arrow arrow-h" viewBox="0 0 24 24" fill="none" stroke="#DD5E14" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
@@ -246,7 +174,7 @@
     </div>
 
     <!-- ============ CARD 6 — FULFILLMENT & BACK ORDER ============ -->
-    <div class="card t-teal" id="card6">
+    <a class="card t-teal" id="card6" href="pages/06-fulfillment-back-order.html">
       <div class="card-head">
         <div class="domain-row">
           <div class="domain-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3 10.5 L12 4 L21 10.5 V21 H3 Z"/><rect x="9.6" y="13.5" width="4.8" height="7.5" fill="currentColor" stroke="none"/></svg></div>
@@ -257,61 +185,28 @@
       </div>
       <div class="card-body">
         <div class="in-tag">← Input: linha <b>Released</b> (Release Management)</div>
-        <div>
-          <div class="sec-label" style="margin-bottom:8px;">Key activities</div>
-          <ul class="activities">
-            <li>Alocação → separação → expedição → entrega</li>
-            <li>Sem prioridade logística especial para ex-Abnormal</li>
-          </ul>
-        </div>
-        <div class="scenario-row">
-          <div class="scenario s-green">
-            <div class="s-title">✓ ATTENDED</div>
-            <ul><li>Disponibilidade ok</li><li>Segue fluxo padrão</li></ul>
-          </div>
-          <div class="scenario s-red">
-            <div class="s-title">BACK ORDER</div>
-            <ul><li>Sem disponibilidade</li><li>Não é On Hold</li></ul>
-          </div>
-        </div>
+        <p class="card-sum">A linha liberada segue o fluxo logístico regular, sem prioridade especial: é atendida ou, sem disponibilidade, fica em Back Order — que não é On Hold.</p>
         <div class="spacer"></div>
         <div>
           <div class="out-label"><span class="dot" style="background:var(--teal);"></span>ESTADO FINAL</div>
           <div class="output-badge unconstrained">ATTENDED / BACK ORDER<span class="sub">Classificação Abnormal permanece nos dois casos</span></div>
         </div>
+        <span class="card-more">Ver detalhes →</span>
       </div>
-    </div>
+    </a>
 
   </div><!-- /flow -->
 
   <!-- ===== GOVERNANCE & AUDIT (cross-cutting) ===== -->
   <div id="governance">
-    <div class="gov-panel">
+    <a class="gov-panel" href="pages/07-governance-audit.html">
       <div class="gov-head">
         <div class="tag">Domínio 07 · Aplica-se a todos os demais</div>
         <h2>Governance &amp; Audit</h2>
         <div class="gov-sub">Controla quem pode agir e garante rastreabilidade de toda ação sensível — overrides, uploads e liberações manuais</div>
       </div>
-      <div class="gov-cols">
-        <div class="gov-col">
-          <h3><span class="sw"></span>Permissões</h3>
-          <ul>
-            <li>Tabela define quem pode executar <b>ajustes</b> de quota</li>
-            <li>Quem pode realizar <b>uploads</b> (reconciliação, liberações)</li>
-            <li>Quem pode executar <b>liberações</b> e <b>ações manuais</b></li>
-          </ul>
-        </div>
-        <div class="gov-col">
-          <h3><span class="sw"></span>Auditoria</h3>
-          <ul>
-            <li>Override manual de quota — rastreado</li>
-            <li>Usuário responsável + data/hora</li>
-            <li>Valor original → <b>valor alterado</b></li>
-            <li>Único mecanismo de governança sobre a autoridade do Manual Release</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <span class="card-more">Ver detalhes →</span>
+    </a>
   </div>
 
   <!-- ===== REVIEW / CLARIFICATIONS ===== -->

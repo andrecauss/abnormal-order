@@ -36,3 +36,54 @@
 /* variante de cenário exclusiva deste rascunho */
 .s-orange{ background:var(--orange-tint); border:1px solid #F6D2B4; }
 .s-orange .s-title{ color:var(--orange); }
+
+/* Regras que saíram de css/poster.css quando o índice virou visão geral (27/09/2026); só este template ainda as usa */
+.sec-label{
+  font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.13em;
+  color:var(--muted); text-transform:uppercase;
+}
+ul.activities{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+ul.activities li{
+  font-size:13px; line-height:1.4; padding-left:18px; position:relative; color:#232A3D;
+}
+ul.activities li::before{
+  content:""; position:absolute; left:0; top:6px; width:7px; height:7px; border-radius:2px;
+}
+
+.tinted-box{ border-radius:12px; padding:13px 15px; font-size:12.5px; line-height:1.5; }
+.tinted-box code{ font-family:'JetBrains Mono',monospace; font-size:11.5px; }
+.msg-strip{
+  text-align:center; font-style:italic; font-size:13px; font-weight:600; padding:10px 8px;
+}
+
+.out-note{ font-size:11.5px; color:var(--muted); margin-top:8px; line-height:1.4; }
+.t-blue .tinted-box{ background:var(--blue-tint); }
+.t-blue .msg-strip{ background:var(--blue-tint); color:var(--blue); border-radius:10px; }
+.t-blue ul.activities li::before{ background:var(--blue); }
+.t-green .tinted-box{ background:var(--green-tint); }
+.t-green ul.activities li::before{ background:var(--green); }
+.t-purple .tinted-box{ background:var(--purple-tint); }
+.t-purple ul.activities li::before{ background:var(--purple); }
+.t-purple2 .tinted-box{ background:var(--purple-2-tint); }
+.t-purple2 ul.activities li::before{ background:var(--purple-2); }
+.t-orange .tinted-box{ background:var(--orange-tint);}
+.t-orange ul.activities li::before{ background:var(--orange);}
+.t-teal .tinted-box{ background:var(--teal-tint);}
+.t-teal ul.activities li::before{ background:var(--teal);}
+
+.balance-banner{
+  background:var(--ink-panel); border-radius:12px; padding:14px 10px; text-align:center;
+  color:#fff; font-weight:800; font-size:13px; letter-spacing:.02em;
+}
+.balance-banner .x{ color:#FFB98A; margin:0 8px; }
+
+/* attended / back order (card 6) */
+.scenario-row{ display:flex; flex-wrap:wrap; gap:12px; }
+.scenario{ flex:1 1 160px; border-radius:12px; padding:13px 14px; }
+.scenario .s-title{ font-size:12.5px; font-weight:800; letter-spacing:.02em; margin-bottom:8px; }
+.scenario ul{ list-style:none; display:flex; flex-direction:column; gap:5px;}
+.scenario li{ font-size:11px; line-height:1.35; padding-left:13px; position:relative; }
+.scenario li::before{ content:"–"; position:absolute; left:0; top:0; }
+.s-red{ background:var(--red-tint); border:1px solid #F3C9C1; }
+.s-red .s-title{ color:var(--red); }
+
