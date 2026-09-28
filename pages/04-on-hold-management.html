@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>04 · On Hold Management — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+<style>
+  :root{ --accent:#5E2FC9; --accent-tint:#EFE8FC; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 04 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="9.5" rx="1.6"/><path d="M8 10.5 V7.2 a4 4 0 0 1 8 0 V10.5"/></svg></div>
+    <h1>On Hold Management</h1>
+  </div>
+  <div class="dom-question">Onde a quantidade Abnormal fica até ser liberada — e em que ordem ela sai da fila?</div>
+
+  <div class="sec">
+    <h2>10 · Quando entra em On Hold</h2>
+    <p>Quando a lógica Abnormal está ativa e a segregação também está ativa, a quantidade Abnormal é colocada em On Hold.</p>
+    <div class="box">
+      <div class="lbl">Entrada</div>
+      <code>Classification = ON + Segregation = ON → ON HOLD</code>
+    </div>
+    <p>Apenas a quantidade Abnormal vai para On Hold. No caso <b>Classification ON + Segregation OFF</b>, a quantidade pode ser classificada Abnormal, mas segue no fluxo normal.</p>
+    <p>Não existe conceitualmente <b>Classification OFF + Segregation ON</b>.</p>
+  </div>
+
+  <div class="sec">
+    <h2>10.1 · Carteira On Hold</h2>
+    <p>As quantidades permanecem na carteira On Hold até ocorrer um evento de saída.</p>
+    <p>A gestão é feita por <b>PN</b>. Para cada PN existe uma fila global reunindo:</p>
+    <ul>
+      <li>todos os clientes;</li>
+      <li>todos os segmentos;</li>
+      <li>todos os canais.</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>10.2 · FIFO</h2>
+    <p>A carteira utiliza FIFO. Pela revisão de 27/09, a chave de ordenação é sequencial e única:</p>
+    <div class="box">
+      <div class="lbl">Chave FIFO</div>
+      <code>Nº da Ordem de Venda + Linha</code>
+    </div>
+    <p>Essa chave substitui timestamp, timezone e regra de empate, e permanece como referência durante todo o período On Hold.</p>
+    <p>Linhas canceladas saem da fila. Linhas liberadas saem definitivamente.</p>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">Ilustrativo</div>
+        <code>OV 1001-10<br/>OV 1001-20<br/>OV 1003-10</code>
+        <div class="ex-res">Ordenado por OV + Linha, independentemente do cliente</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Saídas da fila</h2>
+    <p>As quantidades podem sair do On Hold por cancelamento ou por um dos quatro mecanismos de liberação, detalhados na página 05:</p>
+    <ul>
+      <li><b>Monthly Reconciliation</b></li>
+      <li><b>Inventory Release</b></li>
+      <li><b>Manual Release</b></li>
+      <li><b>Planning Lead Time Release</b></li>
+    </ul>
+    <p>Após qualquer saída por liberação, a classificação Abnormal permanece.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Esclarecido na revisão de 27/09</h2>
+    <div class="box">
+      <div class="lbl">Seção 20.6 do doc</div>
+      <p><b>Pergunta:</b> A chave de ordenação FIFO tem timezone, granularidade e regra de empate definidos?</p>
+      <p><b>Decisão:</b> Chave passa a ser Nº da Ordem de Venda + Linha — sequencial e única, elimina timestamp, timezone e empate.</p>
+    </div>
+    <p><a href="../index.html#review" style="color:var(--accent); font-weight:700;">Ver todos os esclarecimentos da revisão →</a></p>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">On Hold é um estado operacional temporário</div>
+      <div class="principle-chip">A carteira On Hold é administrada por PN em FIFO global</div>
+      <div class="principle-chip">Toda liberação do On Hold é definitiva</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="03-order-classification.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Anterior: Order Classification</a>
+    <a class="nav-btn next" href="05-release-management.html">Próximo: Release Management<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>

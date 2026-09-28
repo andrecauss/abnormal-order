@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>05 · Release Management — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+<style>
+  :root{ --accent:#DD5E14; --accent-tint:#FDEEE3; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 05 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 a7 7 0 1 1 2.1 5"/><path d="M5 16 V12 H9"/></svg></div>
+    <h1>Release Management</h1>
+  </div>
+  <div class="dom-question">Como e quando uma linha sai do On Hold — e o que garante que nenhuma fique presa para sempre?</div>
+
+  <div class="sec">
+    <h2>11 · Mecanismos de liberação</h2>
+    <p>Existem quatro mecanismos principais de liberação. Uma vez liberada, a linha <b>não retorna ao On Hold</b>; a liberação é definitiva e a classificação Abnormal permanece.</p>
+    <div class="mech-grid">
+      <div class="mech">
+        <div class="mech-badge"><span class="mech-num">1</span>Reconciliation</div>
+        <div class="mech-title">Monthly Reconciliation</div>
+        <ul>
+          <li>Após o fechamento da competência</li>
+          <li>Processo externo refletido por upload</li>
+          <li>FIFO resolvido fora do sistema</li>
+        </ul>
+      </div>
+      <div class="mech">
+        <div class="mech-badge"><span class="mech-num">2</span>Inventory</div>
+        <div class="mech-title">Inventory Release</div>
+        <ul>
+          <li>Conforme estratégia própria do Inventory</li>
+          <li>Respeita gestão por PN e FIFO</li>
+          <li>Não pula a primeira linha da fila</li>
+        </ul>
+      </div>
+      <div class="mech">
+        <div class="mech-badge"><span class="mech-num">3</span>Backstop</div>
+        <div class="mech-title">Planning Lead Time</div>
+        <ul>
+          <li>Início no dia 1 do mês seguinte</li>
+          <li>Usa o Planning LT vigente do PN</li>
+          <li>Verificação mensal</li>
+        </ul>
+      </div>
+      <div class="mech mech-anytime">
+        <div class="mech-badge"><span class="mech-num">∞</span>A qualquer momento</div>
+        <div class="mech-title">Manual Release</div>
+        <ul>
+          <li>Usuários autorizados</li>
+          <li>Direto no pedido ou por upload</li>
+          <li>Independente de quota, forecast, Upper Limit e estoque</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>12 · Monthly Reconciliation</h2>
+    <p>A reconciliação ocorre após o fechamento da competência. O processo é realizado <b>fora do sistema</b> e o sistema recebe posteriormente o resultado por upload.</p>
+    <p>O arquivo já contém os pedidos/linhas e quantidades definidos para liberação. O FIFO é resolvido no processo externo.</p>
+
+    <h3>Escopo</h3>
+    <p>A reconciliação ocorre por PN. Todos os clientes daquele PN participam de uma única avaliação.</p>
+    <ul>
+      <li>Não existe separação por cliente</li>
+      <li>Não existe separação por segmento</li>
+      <li>Não existe separação por canal</li>
+    </ul>
+
+    <h3>Limite global do PN</h3>
+    <div class="box">
+      <div class="lbl">Fórmula</div>
+      <code>Global PN Ceiling = PN Forecast × (1 + Upper Limit %)</code>
+    </div>
+    <p>A <b>Minimum Quantity não participa</b> desse cálculo global. Pedidos urgentes fazem parte do consumo total do PN para essa análise.</p>
+
+    <h3>Resultado</h3>
+    <p>Uma linha aprovada pela reconciliação sai imediatamente do On Hold, não depende de uma segunda aprovação do Inventory, mantém a classificação Abnormal e segue para o fluxo logístico regular.</p>
+    <p>A reconciliação de uma competência é realizada uma única vez. As quantidades que permanecerem On Hold continuam disponíveis para os demais mecanismos de liberação.</p>
+  </div>
+
+  <div class="sec">
+    <h2>13 · Inventory Release</h2>
+    <p>O Inventory possui autorização para liberar pedidos On Hold conforme <b>estratégia própria</b>. Não é necessário representar no domínio do Abnormal Order a lógica interna utilizada pelo Inventory para tomar essa decisão.</p>
+    <p>A avaliação respeita a gestão por PN e a fila FIFO por <b>Nº da Ordem de Venda + Linha</b>.</p>
+    <p>Se a primeira linha da fila não estiver apta à liberação segundo a estratégia do Inventory, a fila aguarda. Não se pula a primeira linha para atender uma linha posterior.</p>
+    <p>A carteira On Hold é reavaliada mensalmente pelo Inventory, inclusive para pedidos originados em competências anteriores. A liberação pode ser refletida no sistema por upload utilizando o mesmo modelo de arquivo.</p>
+  </div>
+
+  <div class="sec">
+    <h2>14 · Manual Release</h2>
+    <p>Usuários autorizados podem realizar liberação manual diretamente no pedido ou por upload.</p>
+    <p>A decisão manual não depende de quota, forecast, Upper Limit ou disponibilidade de estoque.</p>
+    <div class="box">
+      <div class="lbl">Transição</div>
+      <code>On Hold → Released</code>
+    </div>
+    <p>A transição é definitiva.</p>
+  </div>
+
+  <div class="sec">
+    <h2>15 · Planning Lead Time Release</h2>
+    <p>Cada PN possui seu próprio <b>Planning Lead Time</b>. O Lead Time pode variar entre PNs.</p>
+
+    <h3>Início da contagem</h3>
+    <p>A contagem não começa na data do pedido. Começa no <b>1º dia do mês seguinte à competência original</b>.</p>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">Exemplo</div>
+        <code>Pedido: 17/05<br/>Competência: Maio<br/>Planning LT: 120 dias</code>
+        <div class="ex-res">Início da contagem: 01/06</div>
+      </div>
+    </div>
+
+    <h3>Lead Time vigente</h3>
+    <p>O sistema utiliza o <b>Planning Lead Time vigente</b> do PN. Não é congelado o Lead Time existente na data original do pedido.</p>
+    <p>Se o LT for alterado enquanto uma linha está On Hold, a nova regra passa a valer.</p>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">Exemplo</div>
+        <code>LT anterior = 120 dias<br/>LT novo = 60 dias<br/>Tempo já transcorrido = 80 dias</code>
+        <div class="ex-res">Condição já atingida; linha liberada na próxima verificação</div>
+      </div>
+    </div>
+    <p>A verificação é <b>mensal</b>. O marco de início da contagem permanece imutável, calculado uma única vez.</p>
+
+    <h3>Liberação</h3>
+    <p>Quando o Planning Lead Time é atingido, a linha sai automaticamente do On Hold, a liberação independe da disponibilidade de estoque, a classificação Abnormal permanece e a linha segue para o fluxo regular.</p>
+    <p>Se não houver disponibilidade para atendimento, o saldo poderá seguir como Back Order.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Esclarecido na revisão de 27/09</h2>
+    <div class="box">
+      <div class="lbl">Seção 20.2 do doc</div>
+      <p><b>Pergunta:</b> Fila FIFO travada no Inventory Release fica parada indefinidamente?</p>
+      <p><b>Decisão:</b> Pode ficar aguardando <b>dentro</b> do Inventory Release, com frequência relevante — mas o Planning LT funciona como backstop e libera pela passagem do tempo.</p>
+    </div>
+    <div class="box">
+      <div class="lbl">Seção 20.3 do doc</div>
+      <p><b>Pergunta:</b> A verificação do Planning LT vigente é diária ou mensal?</p>
+      <p><b>Decisão:</b> Reavaliação é <b>mensal</b>. Marco de início da contagem permanece imutável, calculado uma única vez.</p>
+    </div>
+    <div class="box">
+      <div class="lbl">Seção 20.4 do doc</div>
+      <p><b>Pergunta:</b> O que acontece com overrides ou liberações manuais concorrentes no mesmo Customer–PN?</p>
+      <p><b>Decisão:</b> Não há regra sistêmica de precedência — autoridade do usuário é absoluta. Governança inteiramente via trilha de auditoria.</p>
+    </div>
+    <p><a href="../index.html#review" style="color:var(--accent); font-weight:700;">Ver todos os esclarecimentos da revisão →</a></p>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">Inventory possui autonomia de liberação conforme estratégia própria</div>
+      <div class="principle-chip">Manual Release e Planning Lead Time liberam independentemente de estoque</div>
+      <div class="principle-chip">Toda liberação do On Hold é definitiva</div>
+      <div class="principle-chip">Planning LT é o backstop garantido</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="04-on-hold-management.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Anterior: On Hold Management</a>
+    <a class="nav-btn next" href="06-fulfillment-back-order.html">Próximo: Fulfillment &amp; Back Order<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>
