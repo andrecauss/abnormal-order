@@ -24,7 +24,7 @@
   </div>
   <div class="dom-question">Como e quando uma linha sai do On Hold — e o que garante que nenhuma fique presa para sempre?</div>
 
-  <div class="sec">
+  <div class="sec" id="entrada-saida">
     <h2>Entrada e saída</h2>
     <div class="ex-row io">
       <div class="ex">
@@ -40,27 +40,13 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s11">
     <h2>11 · Mecanismos de liberação</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §11</div>
-      <p>Existem quatro mecanismos principais de liberação:</p>
-      <ol>
-        <li><b>Monthly Reconciliation</b></li>
-        <li><b>Inventory Release</b></li>
-        <li><b>Manual Release</b></li>
-        <li><b>Planning Lead Time Release</b></li>
-      </ol>
-      <p>Uma vez liberada, a linha:</p>
-      <code>não retorna ao On Hold</code>
-      <p>A liberação é definitiva.</p>
-      <p>A classificação Abnormal permanece.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Quatro jeitos de sair da fila.</p>
-      <p>Saiu, não volta.</p>
-      <p>O rótulo Abnormal fica.</p>
+      <p>Existem quatro mecanismos de liberação: Monthly Reconciliation, Inventory Release, Manual Release e Planning Lead Time Release.</p>
+      <p>A liberação é definitiva: a linha nunca retorna ao On Hold.</p>
+      <p>A classificação Abnormal permanece.</p>
     </div>
     <div class="mech-grid">
       <div class="mech">
@@ -102,72 +88,37 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s12">
     <h2>12 · Monthly Reconciliation</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §12</div>
+    <div class="plain">
+      <div class="lbl">Em poucas palavras</div>
       <p>A reconciliação ocorre após o fechamento da competência.</p>
-      <p>O processo é realizado <b>fora do sistema</b>.</p>
-      <p>O sistema recebe posteriormente o resultado por:</p>
-      <code>Upload</code>
-      <p>O arquivo já contém os pedidos/linhas e quantidades definidos para liberação.</p>
+      <p>O cálculo é feito fora do sistema; o resultado entra por upload com linhas e quantidades definidas para liberação.</p>
       <p>O FIFO é resolvido no processo externo.</p>
-    </blockquote>
-    <div class="plain">
-      <div class="lbl">Em poucas palavras</div>
-      <p>Fechou o mês? Alguém faz a conta fora do sistema.</p>
-      <p>O resultado entra por upload.</p>
     </div>
 
-    <h3>12.1 · Escopo</h3>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §12.1</div>
+    <h3 id="s12-1">12.1 · Escopo</h3>
+    <div class="plain">
+      <div class="lbl">Em poucas palavras</div>
       <p>A reconciliação ocorre por PN.</p>
-      <p>Todos os clientes daquele PN participam de uma única avaliação.</p>
-      <p>Não existe separação por:</p>
-      <ul>
-        <li>cliente;</li>
-        <li>segmento;</li>
-        <li>canal.</li>
-      </ul>
-    </blockquote>
-    <div class="plain">
-      <div class="lbl">Em poucas palavras</div>
-      <p>Conta por peça, todos os clientes juntos.</p>
+      <p>Todos os clientes daquele PN entram em uma única avaliação.</p>
+      <p>Não há divisão por cliente, segmento ou canal.</p>
     </div>
 
-    <h3>12.2 · Limite global do PN</h3>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §12.2</div>
-      <p>Na reconciliação, a referência global é:</p>
-      <code>Global PN Ceiling<br/>=<br/>PN Forecast × (1 + Upper Limit %)</code>
-      <p>A <b>Minimum Quantity não participa</b> desse cálculo global.</p>
-      <p>Pedidos urgentes fazem parte do consumo total do PN para essa análise.</p>
-    </blockquote>
+    <h3 id="s12-2">12.2 · Limite global do PN</h3>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Aqui o mínimo não entra.</p>
-      <p>Pedido urgente também consome o total do PN.</p>
+      <p>Teto do PN = forecast do PN × (1 + Upper Limit %).</p>
+      <p>Minimum Quantity não conta nesse cálculo global.</p>
+      <p>Pedidos urgentes contam no total consumido do PN.</p>
     </div>
 
-    <h3>12.3 · Resultado</h3>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §12.3</div>
-      <p>Uma linha aprovada pela reconciliação:</p>
-      <ul>
-        <li>sai imediatamente do On Hold;</li>
-        <li>não depende de uma segunda aprovação do Inventory;</li>
-        <li>mantém a classificação Abnormal;</li>
-        <li>segue para o fluxo logístico regular.</li>
-      </ul>
-      <p>A reconciliação de uma competência é realizada uma única vez.</p>
-      <p>As quantidades que permanecerem On Hold continuam disponíveis para os demais mecanismos de liberação.</p>
-    </blockquote>
+    <h3 id="s12-3">12.3 · Resultado</h3>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Aprovou no arquivo? Sai do On Hold.</p>
-      <p>Não precisa do Inventory aprovar de novo.</p>
-      <p>O que sobrar na fila ainda pode sair por outro mecanismo.</p>
+      <p>Linha aprovada sai imediatamente do On Hold, sem segunda aprovação do Inventory.</p>
+      <p>A classificação Abnormal permanece e a linha segue para o fluxo regular.</p>
+      <p>A reconciliação acontece uma vez por competência; o que fica On Hold continua disponível para outros mecanismos.</p>
     </div>
     <ol class="flow-steps">
       <li><span class="fs-num">1</span>Competência fecha</li>
@@ -177,28 +128,14 @@
     </ol>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s13">
     <h2>13 · Inventory Release</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §13 (critério de fila atualizado na revisão 20.6)</div>
-      <p>O Inventory possui autorização para liberar pedidos On Hold conforme <b>estratégia própria</b>.</p>
-      <p>Não é necessário representar no domínio do Abnormal Order a lógica interna utilizada pelo Inventory para tomar essa decisão.</p>
-      <p>A avaliação respeita:</p>
-      <ul>
-        <li>gestão por PN;</li>
-        <li>fila FIFO por <b>Nº da Ordem de Venda + Linha</b>.</li>
-      </ul>
-      <p><b>Revisão 20.6:</b> substitui a data/hora original do pedido — sem timestamp, timezone ou empate.</p>
-      <p>Se a primeira linha da fila não estiver apta à liberação segundo a estratégia do Inventory, a fila aguarda.</p>
-      <p>Não se pula a primeira linha para atender uma linha posterior.</p>
-      <p>A carteira On Hold é reavaliada mensalmente pelo Inventory, inclusive para pedidos originados em competências anteriores.</p>
-      <p>A liberação pode ser refletida no sistema por upload utilizando o mesmo modelo de arquivo utilizado pelos demais processos de carga de liberação.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>O estoque decide com a regra dele.</p>
-      <p>Respeita a fila. Não pula ninguém.</p>
-      <p>Primeiro da fila não pode sair? A fila espera.</p>
+      <p>Inventory libera conforme estratégia própria, não modelada no Abnormal Order.</p>
+      <p>Respeita a fila por Nº da OV + Linha (revisão 20.6).</p>
+      <p>Se a primeira linha não estiver elegível, a fila aguarda. Nunca pula para a próxima.</p>
+      <p>A carteira é reavaliada todo mês, inclusive competências anteriores, e pode ser refletida por upload com o mesmo modelo de arquivo.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
@@ -208,32 +145,13 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s14">
     <h2>14 · Manual Release</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §14</div>
-      <p>Usuários autorizados podem realizar liberação manual.</p>
-      <p>A liberação pode ocorrer:</p>
-      <ul>
-        <li>diretamente no pedido; ou</li>
-        <li>por upload.</li>
-      </ul>
-      <p>A decisão manual não depende das regras de:</p>
-      <ul>
-        <li>quota;</li>
-        <li>forecast;</li>
-        <li>Upper Limit;</li>
-        <li>disponibilidade de estoque.</li>
-      </ul>
-      <p>Uma vez executada:</p>
-      <code>On Hold → Released</code>
-      <p>A transição é definitiva.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Usuário autorizado libera na mão.</p>
-      <p>Não olha quota, forecast nem estoque.</p>
-      <p>Liberou, acabou.</p>
+      <p>Usuários autorizados podem liberar no pedido ou por upload.</p>
+      <p>A liberação ignora quota, forecast, Upper Limit e estoque.</p>
+      <p>On Hold → Released é uma transição definitiva.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
@@ -244,84 +162,50 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s15">
     <h2>15 · Planning Lead Time Release</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §15</div>
-      <p>Cada PN possui seu próprio:</p>
-      <code>Planning Lead Time</code>
-      <p>O Lead Time pode variar entre PNs.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Cada peça tem um prazo (Lead Time).</p>
-      <p>O prazo pode ser diferente de uma peça para outra.</p>
+      <p>Cada PN tem seu próprio Planning LT.</p>
+      <p>O prazo pode variar entre PNs.</p>
     </div>
 
-    <h3>15.1 · Início da contagem</h3>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §15.1</div>
-      <p>A contagem não começa na data do pedido.</p>
-      <p>Começa no:</p>
-      <code>1º dia do mês seguinte à competência original</code>
-      <p>Exemplo:</p>
-      <code>Pedido: 17/05<br/>Competência: Maio<br/>Planning LT: 120 dias<br/><br/>Início da contagem: 01/06</code>
-    </blockquote>
+    <h3 id="s15-1">15.1 · Início da contagem</h3>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Conta começa no dia 1 do mês seguinte.</p>
+      <p>A contagem começa no dia 1 do mês seguinte à competência original.</p>
+      <p>Não começa na data do pedido.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Exemplo</div>
-        <code>Pedido: 17/05<br/>Competência: Maio<br/>Planning LT: 120 dias</code>
+        <div class="bar" role="img" aria-label="Pedido em 17/05, competência de maio. A contagem começa em 01/06 e segue por 120 dias."><span class="seg is-soft" style="--w:25%">Maio</span><span class="seg" style="--w:75%">+120 dias</span><i class="marker is-below" style="--x:13%"><span>17/05 pedido</span></i><i class="marker" style="--x:25%"><span>01/06 início</span></i><i class="marker to-left" style="--x:100%"><span>LT atingido</span></i></div>
         <div class="ex-res">Início da contagem: 01/06</div>
       </div>
     </div>
 
-    <h3>15.2 · Lead Time vigente</h3>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §15.2 (cadência atualizada na revisão 20.3)</div>
-      <p>O sistema utiliza o <b>Planning Lead Time vigente</b> do PN.</p>
-      <p>Não é congelado o Lead Time existente na data original do pedido.</p>
-      <p>Se o LT for alterado enquanto uma linha está On Hold, a nova regra passa a valer.</p>
-      <p>Exemplo:</p>
-      <code>LT anterior = 120 dias<br/>LT novo = 60 dias<br/>Tempo já transcorrido = 80 dias</code>
-      <p>A condição já foi atingida e a linha deve ser liberada quando o sistema detectar a situação.</p>
-      <p>A condição é verificada <b>mensalmente</b>.</p>
-      <p><b>Revisão 20.3:</b> substitui a verificação diária. Marco de início da contagem permanece imutável, calculado uma única vez.</p>
-    </blockquote>
+    <h3 id="s15-2">15.2 · Lead Time vigente</h3>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Prazo mudou? Vale o novo.</p>
-      <p>A verificação é mensal.</p>
+      <p>O sistema usa o Planning LT atual do PN, não o LT congelado da data original do pedido.</p>
+      <p>Se o LT mudar enquanto a linha está On Hold, vale a regra vigente.</p>
+      <p>A verificação é mensal (revisão 20.3).</p>
       <p>O início da contagem não muda.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Exemplo</div>
-        <code>LT anterior = 120 dias<br/>LT novo = 60 dias<br/>Tempo já transcorrido = 80 dias</code>
-        <div class="ex-res">Condição já atingida; linha liberada na próxima verificação</div>
+        <div class="bar" role="img" aria-label="Já passaram 80 dias. O LT novo é 60, então o prazo já foi atingido. O LT antigo era 120."><span class="seg" style="--w:66.67%">80 dias</span><i class="marker" style="--x:50%"><span>LT novo 60</span></i><i class="marker is-below to-left" style="--x:100%"><span>LT antigo 120</span></i></div>
+        <div class="ex-res">80 dias ≥ LT novo 60: condição já atingida, liberada na verificação mensal</div>
       </div>
     </div>
 
-    <h3>15.3 · Liberação</h3>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §15.3</div>
-      <p>Quando o Planning Lead Time é atingido:</p>
-      <ul>
-        <li>a linha sai automaticamente do On Hold;</li>
-        <li>a liberação independe da disponibilidade de estoque;</li>
-        <li>a classificação Abnormal permanece;</li>
-        <li>a linha segue para o fluxo regular.</li>
-      </ul>
-      <p>Se não houver disponibilidade para atendimento, o saldo poderá seguir como Back Order.</p>
-    </blockquote>
+    <h3 id="s15-3">15.3 · Liberação</h3>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Venceu o prazo, a linha sai do On Hold.</p>
-      <p>Sem estoque? Sai do On Hold mesmo assim e segue no fluxo regular.</p>
-      <p>O rótulo Abnormal fica.</p>
+      <p>Quando o Planning LT é atingido, a linha sai automaticamente do On Hold.</p>
+      <p>A liberação independe de estoque, a classificação Abnormal permanece e a linha segue para o fluxo regular.</p>
+      <p>Sem disponibilidade, o saldo poderá seguir como Back Order.</p>
     </div>
     <ol class="flow-steps">
       <li><span class="fs-num">1</span>Mês da competência</li>
