@@ -24,7 +24,7 @@
   </div>
   <div class="dom-question">Quem pode agir sobre quotas, uploads e liberações — e como cada ação sensível fica rastreada?</div>
 
-  <div class="sec">
+  <div class="sec" id="entrada-saida">
     <h2>Entrada e saída</h2>
     <div class="ex-row io">
       <div class="ex">
@@ -40,79 +40,56 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s17">
     <h2>17 · Governança</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §17</div>
-      <p>O domínio de governança controla permissões e rastreabilidade.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Diz quem pode agir.</p>
-      <p>Guarda o rastro do que mudou.</p>
+      <p>§17 controla permissões e rastreabilidade.</p>
+      <p>Diz quem pode agir e guarda o rastro do que mudou.</p>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s17-1">
     <h2>17.1 · Permissões</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §17.1</div>
-      <p>Uma tabela de permissões define quais usuários podem executar ações como:</p>
-      <ul>
-        <li>ajustes;</li>
-        <li>uploads;</li>
-        <li>liberações;</li>
-        <li>ações manuais.</li>
-      </ul>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Uma tabela diz quem pode fazer o quê.</p>
+      <p>§17.1 usa uma tabela de permissões para definir quem pode fazer ajustes, uploads, liberações e ações manuais.</p>
       <p>Sem permissão, não ajusta, não sobe arquivo, não libera.</p>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s17-2">
     <h2>17.2 · Auditoria</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §17.2</div>
-      <p>O sistema mantém rastreabilidade das alterações relevantes.</p>
-      <p>Exemplo:</p>
-      <ul>
-        <li>override manual de quota;</li>
-        <li>usuário responsável;</li>
-        <li>data/hora;</li>
-        <li>valor original;</li>
-        <li>valor alterado.</li>
-      </ul>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Toda mudança importante fica registrada.</p>
-      <p>Quem, quando, antes e depois.</p>
-      <p>É o único freio sobre o Manual Release.</p>
+      <p>§17.2 mantém rastreabilidade das alterações relevantes.</p>
+      <p>Em um override manual de quota, ficam registrados usuário responsável, data/hora, valor original e valor alterado.</p>
+      <p>A trilha de auditoria é a única governança sobre o Manual Release.</p>
     </div>
     <div class="ex-row">
-      <div class="ex">
+      <div class="ex audit">
         <div class="ex-lbl">Ilustrativo · registro de auditoria</div>
-        <code>Usuário = ana.silva<br/>Data/hora = 12/06 14:32<br/>Ação = override de quota<br/>Valor original = 0<br/>Valor alterado = 40</code>
+        <dl>
+          <dt>Usuário</dt>
+          <dd>ana.silva</dd>
+          <dt>Data/hora</dt>
+          <dd>12/06 14:32</dd>
+          <dt>Ação</dt>
+          <dd>Override de quota</dd>
+          <dt>Valor</dt>
+          <dd><s>0</s> → <ins>40</ins></dd>
+        </dl>
       </div>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s17-3">
     <h2>17.3 · Uploads</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §17.3</div>
-      <p>O mesmo modelo de arquivo pode ser utilizado para refletir liberações no sistema.</p>
-      <p>O arquivo não precisa identificar o motivo da liberação.</p>
-      <p>A lógica que decidiu a liberação ocorre antes do upload.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
-      <p>Um formato de arquivo para as liberações por upload.</p>
-      <p>O arquivo não diz o porquê.</p>
-      <p>A decisão vem antes; o upload só registra.</p>
+      <p>§17.3 permite usar o mesmo modelo de arquivo para refletir liberações no sistema.</p>
+      <p>O arquivo não precisa trazer o motivo da liberação.</p>
+      <p>A decisão acontece antes do upload; o arquivo só reflete a liberação.</p>
     </div>
     <ol class="flow-steps">
       <li><span class="fs-num">1</span>Decisão de liberação (antes do upload)</li>
