@@ -24,7 +24,7 @@
   </div>
   <div class="dom-question">O pedido, somado ao acumulado do mês do Customer–PN, ultrapassa o limite — e qual parte dele é Abnormal?</div>
 
-  <div class="sec">
+  <div class="sec" id="entrada-saida">
     <h2>Entrada e saída</h2>
     <div class="ex-row io">
       <div class="ex">
@@ -40,30 +40,13 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s5-1">
     <h2>5.1 · Tipos de pedido</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §5.1</div>
-      <p>Existem dois tipos relevantes:</p>
-      <ul>
-        <li><b>Regular</b></li>
-        <li><b>Urgente</b></li>
-      </ul>
-      <p>Regular participa normalmente da avaliação de Abnormal Order.</p>
-      <p>O pedido urgente:</p>
-      <ul>
-        <li>nunca é classificado como Abnormal;</li>
-        <li>nunca é colocado em On Hold pela lógica de Abnormal Order;</li>
-        <li>segue integralmente para o fluxo regular;</li>
-        <li>sua quantidade <b>compõe o acumulado mensal Customer–PN</b>.</li>
-      </ul>
-      <p>Portanto, um pedido urgente pode consumir o limite e fazer com que um pedido regular posterior seja classificado como Abnormal.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Pedido urgente passa direto.</p>
-      <p>Nunca vira Abnormal.</p>
-      <p>Mas conta no total do mês.</p>
+      <p>Nunca vira Abnormal e nunca entra em On Hold por esta lógica.</p>
+      <p>Mas compõe o acumulado mensal Customer–PN.</p>
       <p>Pode fazer um pedido regular posterior passar do limite.</p>
     </div>
     <div class="ex-row">
@@ -77,29 +60,25 @@
       </div>
       <div class="ex">
         <div class="ex-lbl">Ilustrativo · urgente consome o limite</div>
-        <code>Limite = 20<br/>Pedido urgente = 15<br/>Pedido regular posterior = 10</code>
+        <div class="bar" role="img" aria-label="Limite 20. Pedido urgente 15 consome o limite sem ser avaliado. Pedido regular de 10: 5 Normal, 5 Abnormal.">
+          <span class="seg is-soft" style="--w:60%">15 urgente</span>
+          <span class="seg" style="--w:20%">5</span>
+          <span class="seg is-hatched" style="--w:20%">5</span>
+          <i class="marker to-left" style="--x:80%"><span>limite 20</span></i>
+        </div>
         <div class="ex-res">Pedido regular: 5 Normal · 5 Abnormal</div>
       </div>
     </div>
+    <div class="key" aria-hidden="true"><span><i class="is-soft"></i>Urgente (já no mês)</span><span><i></i>Normal</span><span><i class="is-hatched"></i>Abnormal</span></div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s6">
     <h2>6 · Acumulado mensal Customer–PN</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §6</div>
-      <p>A avaliação ocorre em tempo real para cada linha de pedido.</p>
-      <p>A chave conceitual é:</p>
-      <code>Customer + PN + Competência</code>
-      <p>O sistema compara o acumulado mensal válido com o limite calculado para aquela combinação.</p>
-      <code>Monthly Accumulated Quantity<br/>vs.<br/>Customer–PN Final Limit</code>
-      <p>A competência é independente das competências anteriores e posteriores.</p>
-      <p>Na virada do mês, a própria mudança de competência funciona como fechamento do período.</p>
-      <p>Não existe carry-over do limite ou acumulado para o mês seguinte.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Cada linha de pedido é conferida na hora.</p>
-      <p>Soma: cliente + peça + mês.</p>
+      <p>A chave é Customer + PN + Competência.</p>
+      <p>O acumulado mensal válido é comparado com o Customer–PN Final Limit.</p>
       <p>A cada mês, o acumulado recomeça. Nada passa para o mês seguinte.</p>
     </div>
     <div class="ex-row">
@@ -114,21 +93,14 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s7">
     <h2>7 · Classificação Normal e Abnormal</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §7</div>
-      <p>Até o limite:</p>
-      <code>NORMAL</code>
-      <p>Somente a quantidade acima do limite é:</p>
-      <code>ABNORMAL</code>
-      <p>Atingir exatamente o limite não caracteriza anormalidade.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Cabe no limite? Normal.</p>
       <p>Passou? Só o que passou é Abnormal.</p>
       <p>Bater o limite exato ainda é Normal.</p>
+      <p>Normal = MIN(pedido, saldo). Abnormal = pedido − Normal.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
@@ -144,64 +116,54 @@
     </ol>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s7-1">
     <h2>7.1 · Exemplo</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §7.1</div>
-      <p>Limite:</p>
-      <code>20</code>
-      <p>Acumulado antes do pedido:</p>
-      <code>15</code>
-      <p>Novo pedido:</p>
-      <code>10</code>
-      <p>Resultado:</p>
-      <code>5 Normal<br/>5 Abnormal</code>
-      <p>Conceitualmente:</p>
-      <code>Normal Qty = MIN(Order Qty, Remaining Limit)<br/><br/>Abnormal Qty = Order Qty - Normal Qty</code>
-      <p>A referência entre as partes e a linha original do pedido é preservada pelo sistema.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Já havia 15 no mês.</p>
       <p>O limite era 20.</p>
       <p>Do novo pedido de 10, só cabem 5.</p>
       <p>Os outros 5 viram Abnormal.</p>
+      <p>As duas partes continuam ligadas à linha original.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Exemplo do doc · excede o limite</div>
-        <code>Limite = 20<br/>Acumulado antes = 15<br/>Pedido = 10</code>
+        <div class="bar" role="img" aria-label="Limite 20. Já no mês: 15. Pedido de 10: 5 Normal até o limite, 5 Abnormal acima.">
+          <span class="seg is-soft" style="--w:60%">15</span>
+          <span class="seg" style="--w:20%">5</span>
+          <span class="seg is-hatched" style="--w:20%">5</span>
+          <i class="marker to-left" style="--x:80%"><span>limite 20</span></i>
+        </div>
         <div class="ex-res">5 Normal · 5 Abnormal</div>
       </div>
       <div class="ex">
         <div class="ex-lbl">Ilustrativo · atinge exatamente</div>
-        <code>Limite = 20<br/>Acumulado antes = 15<br/>Pedido = 5</code>
+        <div class="bar" role="img" aria-label="Limite 20. Já no mês 15. Pedido 5: tudo Normal, nada acima do limite.">
+          <span class="seg is-soft" style="--w:60%">15</span>
+          <span class="seg" style="--w:20%">5</span>
+          <i class="marker to-left" style="--x:80%"><span>limite 20</span></i>
+        </div>
         <div class="ex-res">5 Normal · 0 Abnormal</div>
       </div>
     </div>
+    <div class="key" aria-hidden="true"><span><i class="is-soft"></i>Já no mês</span><span><i></i>Normal</span><span><i class="is-hatched"></i>Abnormal</span></div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s8">
     <h2>8 · Classificação permanente</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §8</div>
-      <p>Uma vez classificada como <b>Abnormal</b>, a quantidade mantém essa classificação permanentemente.</p>
-      <p>Eventos posteriores não removem a classificação, incluindo:</p>
+    <div class="plain">
+      <div class="lbl">Em poucas palavras</div>
+      <p>Virou Abnormal, fica Abnormal.</p>
+      <p>Eventos posteriores não apagam essa classificação:</p>
       <ul>
         <li>liberação;</li>
         <li>atendimento;</li>
         <li>Back Order;</li>
         <li>cancelamento;</li>
         <li>alteração posterior do acumulado;</li>
-        <li>liberação de capacidade causada pelo cancelamento de outros pedidos.</li>
+        <li>capacidade liberada por cancelamento de outros pedidos.</li>
       </ul>
-      <p>Portanto:</p>
-      <code>Abnormal = atributo histórico permanente<br/>On Hold = status operacional temporário</code>
-    </blockquote>
-    <div class="plain">
-      <div class="lbl">Em poucas palavras</div>
-      <p>Virou Abnormal, fica Abnormal.</p>
-      <p>Liberar, atender ou cancelar não apaga.</p>
       <p>On Hold é só um estado de espera.</p>
     </div>
     <div class="ex-row">
@@ -212,33 +174,21 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s9">
     <h2>9 · Cancelamentos</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §9</div>
-      <p>O cliente não pode alterar a quantidade de uma linha existente.</p>
-      <p>Também não existe cancelamento parcial da linha.</p>
-      <p>A linha é:</p>
-      <ul>
-        <li>mantida integralmente; ou</li>
-        <li>cancelada integralmente.</li>
-      </ul>
-      <p>Quando cancelada:</p>
-      <ul>
-        <li>sai da fila On Hold;</li>
-        <li>deixa de participar dos mecanismos futuros de liberação;</li>
-        <li>filtros do acumulado histórico passam a desconsiderar sua quantidade;</li>
-        <li>sua classificação histórica Abnormal permanece.</li>
-      </ul>
-      <p>Se o cancelamento ocorrer durante a competência corrente, a capacidade liberada pode ser utilizada por novos pedidos do mesmo Customer–PN.</p>
-      <p>Essa capacidade, entretanto, <b>não provoca reclassificação ou liberação automática de linhas Abnormal/On Hold já existentes</b>.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Cliente não muda a quantidade da linha.</p>
-      <p>Ou cancela tudo, ou nada.</p>
-      <p>Cancelou: sai da fila, sai do acumulado, mas continua marcado Abnormal.</p>
-      <p>Sobrou espaço? Só pedido novo usa.</p>
+      <p>Não existe cancelamento parcial: ou cancela tudo, ou nada.</p>
+      <p>Quando a linha é cancelada:</p>
+      <ul>
+        <li>sai da fila On Hold;</li>
+        <li>sai dos mecanismos futuros de liberação;</li>
+        <li>deixa de contar no acumulado histórico;</li>
+        <li>a classificação histórica Abnormal permanece.</li>
+      </ul>
+      <p>Se o cancelamento ocorrer na competência corrente, a capacidade liberada pode ser usada por novos pedidos do mesmo Customer–PN.</p>
+      <p>Ela não reclassifica nem libera linhas Abnormal/On Hold já existentes.</p>
     </div>
   </div>
 

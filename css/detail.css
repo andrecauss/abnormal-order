@@ -142,6 +142,7 @@ h1{ font-size: clamp(24px,3.4vw,38px); font-weight:900; line-height:1.15; }
 .key span{ display:inline-flex; align-items:center; gap:6px; }
 .key i{ width:12px; height:12px; border-radius:3px; }
 .key i:not([class]){ background:var(--accent); }
+.key i.is-marker{ width:0; border-radius:0; border-left:2px dashed var(--ink); }
 
 .queue{ list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
 .queue li{ font:700 12.5px 'JetBrains Mono',monospace; padding:10px 12px; border-radius:10px; background:#fff; border:1.5px solid var(--line); }

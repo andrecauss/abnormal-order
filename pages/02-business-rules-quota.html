@@ -24,7 +24,7 @@
   </div>
   <div class="dom-question">Qual é o limite mensal permitido para este Customer–PN — e o que acontece quando a regra muda no meio da competência?</div>
 
-  <div class="sec">
+  <div class="sec" id="entrada-saida">
     <h2>Entrada e saída</h2>
     <div class="ex-row io">
       <div class="ex">
@@ -40,19 +40,8 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s4-1">
     <h2>4.1 · Regra por PN</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §4.1</div>
-      <p>Cada PN pertence a uma regra contendo, no mínimo:</p>
-      <ul>
-        <li><b>Upper Limit %</b></li>
-        <li><b>Minimum Quantity</b></li>
-        <li><b>Classification Flag</b></li>
-        <li><b>Segregation Flag</b></li>
-      </ul>
-      <p>Um PN pertence a apenas uma regra aplicável.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Cada peça (PN) segue uma regra.</p>
@@ -60,7 +49,7 @@
       <p>Uma peça, uma regra só.</p>
     </div>
     <table>
-      <tr><th>Parâmetro</th><th>O que controla</th></tr>
+      <tr><th>Parâmetro (no mínimo)</th><th>O que controla</th></tr>
       <tr><td>Upper Limit %</td><td>Folga percentual acima do Forecast Customer–PN</td></tr>
       <tr><td>Minimum Quantity</td><td>Piso mínimo do limite mensal</td></tr>
       <tr><td>Classification Flag</td><td>Se o PN participa da classificação Abnormal</td></tr>
@@ -68,37 +57,42 @@
     </table>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s4-2">
     <h2>4.2 · Limite mensal Customer–PN</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §4.2</div>
-      <p>A quantidade mínima funciona como piso do limite, e não como tolerância adicional.</p>
-      <code>Customer–PN Final Limit = MAX(Forecast Customer–PN × (1 + Upper Limit %), Minimum Quantity)</code>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Cada cliente tem um teto por mês para cada peça.</p>
-      <p>Teto = previsão + folga em %.</p>
-      <p>Previsão pequena demais? Vale o mínimo.</p>
+      <p>Teto = previsão + folga em %. Previsão pequena demais? Vale o mínimo.</p>
+      <p>Final Limit é o maior entre forecast × (1 + Upper Limit %) e Minimum Quantity.</p>
       <p>O mínimo é chão. Não soma na folga.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
-        <div class="ex-lbl">Exemplo 1</div>
-        <code>Forecast = 100<br/>Upper Limit = 20%<br/>Min Qty = 10</code>
+        <div class="ex-lbl">Exemplo 1 · Upper 20% · Min 10</div>
+        <div class="bars" role="img" aria-label="Forecast 100 mais 20% = 120; mínimo 10; Final Limit 120.">
+          <div class="bar-row"><span>Cálculo</span><div class="bar"><span class="seg is-soft" style="--w:83.33%">100</span><span class="seg is-soft" style="--w:16.67%">+20</span><i class="marker" style="--x:8.33%"><span>mín 10</span></i></div><span>120</span></div>
+          <div class="bar-row"><span>Limite</span><div class="bar"><span class="seg" style="--w:100%">Final Limit</span></div><span>120</span></div>
+        </div>
         <div class="ex-res">Final Limit = 120</div>
       </div>
       <div class="ex">
-        <div class="ex-lbl">Exemplo 2</div>
-        <code>Forecast = 3<br/>Upper Limit = 20%<br/>Min Qty = 10<br/>(3 × 1.20 = 3.6)</code>
+        <div class="ex-lbl">Exemplo 2 · Upper 20% · Min 10</div>
+        <div class="bars" role="img" aria-label="Forecast 3 mais 20% = 3,6; abaixo do mínimo 10; Final Limit 10.">
+          <div class="bar-row"><span>Cálculo</span><div class="bar"><span class="seg is-soft" style="--w:30%">3</span><span class="seg is-soft" style="--w:6%"></span><i class="marker to-left" style="--x:100%"><span>mín 10</span></i></div><span>3,6</span></div>
+          <div class="bar-row"><span>Limite</span><div class="bar"><span class="seg" style="--w:100%">Final Limit</span></div><span>10</span></div>
+        </div>
         <div class="ex-res">Final Limit = 10</div>
       </div>
       <div class="ex">
-        <div class="ex-lbl">Exemplo 3</div>
-        <code>Forecast = 0<br/>Min Qty = 10</code>
+        <div class="ex-lbl">Exemplo 3 · Min 10</div>
+        <div class="bars" role="img" aria-label="Forecast 0; Final Limit = mínimo 10.">
+          <div class="bar-row"><span>Cálculo</span><div class="bar is-empty"><i class="marker to-left" style="--x:100%"><span>mín 10</span></i></div><span>0</span></div>
+          <div class="bar-row"><span>Limite</span><div class="bar"><span class="seg" style="--w:100%">Final Limit</span></div><span>10</span></div>
+        </div>
         <div class="ex-res">Final Limit = 10</div>
       </div>
     </div>
+    <div class="key" aria-hidden="true"><span><i class="is-soft"></i>Forecast + folga</span><span><i></i>Final Limit</span><span><i class="is-marker"></i>Mínimo</span></div>
     <ol class="flow-steps">
       <li><span class="fs-num">1</span>Forecast Customer–PN</li>
       <li><span class="fs-num">2</span>× (1 + Upper Limit %)</li>
@@ -107,14 +101,8 @@
     </ol>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s4-3">
     <h2>4.3 · Classification e Segregation</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §4.3</div>
-      <p>Os flags são dependentes.</p>
-      <p>Não existe conceitualmente:</p>
-      <code>Classification OFF + Segregation ON</code>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Classification liga o rótulo Abnormal.</p>
@@ -130,26 +118,13 @@
     </table>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s4-4">
     <h2>4.4 · Alteração de regras durante a competência</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §4.4</div>
-      <p>As regras podem ser alteradas durante uma competência ativa.</p>
-      <p>A alteração, isoladamente, não modifica os cálculos existentes.</p>
-      <p>Para que tenha efeito, deve ser executado novamente o processo completo de cálculo:</p>
-      <ol>
-        <li>histórico;</li>
-        <li>representatividade;</li>
-        <li>distribuição do forecast;</li>
-        <li>quota/limite.</li>
-      </ol>
-      <p>Tecnicamente, o recálculo pode produzir reclassificações retroativas, embora isso não faça parte do processo operacional esperado.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Mudou a regra? Nada muda sozinho.</p>
-      <p>Tem que rodar tudo de novo.</p>
-      <p>Rodar de novo pode mudar pedido já classificado.</p>
+      <p>Tem que rodar tudo de novo: histórico, representatividade, distribuição do forecast e quota/limite.</p>
+      <p>Rodar de novo pode mudar pedido já classificado. É possível, mas não faz parte da operação esperada.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
