@@ -40,16 +40,16 @@
 
 ### Componentes — páginas de detalhe (`detail.css`)
 
-`.wrap` · `.back-link` · `.dom-eyebrow` · `.dom-head` + `.dom-badge` (56px, SVG 30px) · `.dom-question` · `.sec` (`h2`, `h3`, `p`, `ul` com marcador quadrado em `--accent`) · `.box` + `.lbl` (fórmula/destaque em `--accent-tint`) · `.ex-row` / `.ex` / `.ex-lbl` / `.ex-res` (exemplos numéricos lado a lado) · `table` (header em `--accent-tint`) · `.principle-row` / `.principle-chip` · `.mech-grid` / `.mech` / `.mech-badge` / `.mech-num` / `.mech-anytime` / `.mech-title` (mecanismos em sequência, cor via `--accent`) · `.ex-row.io` + `.io-note` (Entrada e saída) · `.rule` + `.lbl` (citação da regra do doc) · `.plain` + `.lbl` ("Em poucas palavras") · `ol.flow-steps` + `.fs-num` (fluxo em passos; vira vertical ≤640px) · `.nav-footer` / `.nav-btn` / `.nav-btn.next`.
+`.wrap` · `.back-link` · `.dom-eyebrow` · `.dom-head` + `.dom-badge` (56px, SVG 30px) · `.dom-question` · `.sec` (`h2`, `h3`, `p`, `ul` com marcador quadrado em `--accent`) · `.box` + `.lbl` (fórmula/destaque em `--accent-tint`) · `.ex-row` / `.ex` / `.ex-lbl` / `.ex-res` (exemplos numéricos lado a lado) · `table` (header em `--accent-tint`) · `.principle-row` / `.principle-chip` · `.mech-grid` / `.mech` / `.mech-badge` / `.mech-num` / `.mech-anytime` / `.mech-title` (mecanismos em sequência, cor via `--accent`) · `.ex-row.io` + `.io-note` (Entrada e saída) · `.plain` + `.lbl` ("Em poucas palavras") · `ol.flow-steps` + `.fs-num` / `.fs-ico` (fluxo em passos; vira vertical ≤640px) · `.bars` / `.bar-row` / `.bar` / `.seg` (`.is-soft`, `.is-hatched`) / `.marker` / `.key` (visuais numéricos) · `.queue` / `.q-exits` / `.q-exit` (fila) · `.ex.audit` (registro de auditoria) · `.nav-footer` / `.nav-btn` / `.nav-btn.next`.
 
-### Padrão de página didática (desde 28/09/2026)
+### Padrão de página didática (desde 28/09/2026; sem citações desde a rodada 3)
 
-Público: pessoas que não conhecem o domínio. Cada página explica a regra do doc em linguagem simples.
+Público: pessoas que não conhecem o domínio. Pouco texto, muito visual. A fonte continua sendo `docs/business-domains.md`, mas a página **não cita** o doc.
 
 1. `.back-link` → `.dom-eyebrow` com o mês (`Domínio 02 / 07 · Mês N-1`) → `.dom-head` → `.dom-question`.
-2. Seção **Entrada e saída** logo depois da pergunta:
+2. Seção **Entrada e saída** (`<div class="sec" id="entrada-saida">`) logo depois da pergunta:
 ```html
-<div class="sec">
+<div class="sec" id="entrada-saida">
   <h2>Entrada e saída</h2>
   <div class="ex-row io">
     <div class="ex"><div class="ex-lbl">← Entrada · 01 Demand &amp; Forecast · Mês N-1</div><div class="ex-res">Forecast Customer–PN</div><div class="io-note">Forecast do PN × representatividade do cliente.</div></div>
@@ -57,32 +57,32 @@ Público: pessoas que não conhecem o domínio. Cada página explica a regra do 
   </div>
 </div>
 ```
-3. Cada seção de regra, nesta ordem: `h2` "§ · título" → `blockquote.rule` (texto do `docs/business-domains.md` quase literal, fórmula como `<code>` dentro dele) → `.plain` (2–4 frases curtas, palavras simples, sem jargão, estilo "caveman" mas em pt-BR correto) → tabela ou `.mech-grid` se houver → `.ex-row` com exemplos (do doc, ou rotulados "Ilustrativo") → `ol.flow-steps` quando houver sequência.
-4. "Esclarecido na revisão" (`.box`), "Princípios relacionados", `.nav-footer` — sem mudança.
+3. Cada seção de regra tem **id estável** para links vindos do exemplo de ponta a ponta: `id="s4-2"` para §4.2, `id="s6"` para §6 (ponto vira hífen). Ordem: `h2` "§ · título" → `.plain` (2–4 frases curtas, palavras simples; decisão da revisão citada como "(revisão 20.x)") → tabela ou `.mech-grid` se houver → `.ex-row` com exemplos (do doc ou "Ilustrativo"); **quando o exemplo tem números, um visual substitui o `<code>` dentro do `.ex`**, mantendo `.ex-lbl` e `.ex-res` → `ol.flow-steps` quando houver sequência (`.fs-ico` com SVG no lugar de `.fs-num`, opcional).
+4. Visuais: CSS puro ou SVG inline, sem JS; cores só de `--accent`, `--accent-tint`, `--bg`, `--line`, `--ink`; larguras por `style="--w:…"` e posições por `style="--x:…"`, em % da escala do próprio exemplo. Sólido = resultado, `.is-soft` = base/já consumido, `.is-hatched` = excedente (Abnormal). Para dividir um total entre partes iguais em status (ex.: clientes A e B), sólido e `.is-soft` só alternam as partes. Todo `.bar`/`.bars` tem `role="img"` + `aria-label` com os números; ícones e `.key` têm `aria-hidden="true"`.
+5. "Esclarecido na revisão" (`.box`), "Princípios relacionados", `.nav-footer` — sem mudança.
 
-Exemplo de seção (§4.2):
+Exemplo de seção (§7.1, barra de capacidade):
 ```html
-<div class="sec">
-  <h2>4.2 · Limite mensal Customer–PN</h2>
-  <blockquote class="rule">
-    <div class="lbl">Regra · doc §4.2</div>
-    <p>A quantidade mínima funciona como piso do limite, e não como tolerância adicional.</p>
-    <code>Customer–PN Final Limit = MAX(Forecast Customer–PN × (1 + Upper Limit %), Minimum Quantity)</code>
-  </blockquote>
+<div class="sec" id="s7-1">
+  <h2>7.1 · Exemplo</h2>
   <div class="plain">
     <div class="lbl">Em poucas palavras</div>
-    <p>Cada cliente tem um teto por mês para cada peça.</p>
-    <p>Teto = previsão + folga em %.</p>
-    <p>Previsão pequena demais? Vale o mínimo.</p>
-    <p>O mínimo é chão. Não soma na folga.</p>
+    <p>O que cabe no limite é Normal. O que passa é Abnormal.</p>
+    <p>As duas partes continuam ligadas à linha original.</p>
   </div>
-  <div class="ex-row">…exemplos…</div>
-  <ol class="flow-steps">
-    <li><span class="fs-num">1</span>Forecast Customer–PN</li>
-    <li><span class="fs-num">2</span>× (1 + Upper Limit %)</li>
-    <li><span class="fs-num">3</span>Compara com Min Qty</li>
-    <li><span class="fs-num">4</span>O maior = Final Limit</li>
-  </ol>
+  <div class="ex-row">
+    <div class="ex">
+      <div class="ex-lbl">Exemplo do doc · excede o limite</div>
+      <div class="bar" role="img" aria-label="Limite 20. Já no mês: 15. Pedido de 10: 5 Normal até o limite, 5 Abnormal acima.">
+        <span class="seg is-soft" style="--w:60%">15</span>
+        <span class="seg" style="--w:20%">5</span>
+        <span class="seg is-hatched" style="--w:20%">5</span>
+        <i class="marker to-left" style="--x:80%"><span>limite 20</span></i>
+      </div>
+      <div class="ex-res">5 Normal · 5 Abnormal</div>
+    </div>
+  </div>
+  <div class="key" aria-hidden="true"><span><i class="is-soft"></i>Já no mês</span><span><i></i>Normal</span><span><i class="is-hatched"></i>Abnormal</span></div>
 </div>
 ```
 

@@ -20,7 +20,7 @@ Antes de qualquer mudança, leia `docs/agent-context/` (principalmente `architec
 
 ## Padrão de página de detalhe (`pages/NN-*.html`)
 
-- Siga o "Padrão de página didática" em `docs/agent-context/design-system.md` (Entrada e saída, regra do doc em `.rule`, `.plain`, exemplos, `.flow-steps`).
+- Siga o "Padrão de página didática" em `docs/agent-context/design-system.md` (Entrada e saída, `.plain`, exemplos com visuais, `.flow-steps`, `id` estável por seção). **Sem citação do doc nas páginas** (decisão do usuário, 28/09): pouco texto, mais visual.
 - Base estrutural: `pages/02-business-rules-quota.html` (head, `.wrap`, `.back-link`, `.dom-eyebrow`, `.dom-head` + `.dom-badge`, `.dom-question`, `.sec`, bloco "Esclarecido na revisão", "Princípios relacionados", `.nav-footer`).
 - Por página muda: `--accent`/`--accent-tint` no `<style>` do head, SVG do badge (o mesmo do card correspondente em `index.html`), `Domínio NN / 07 · Mês X`, título, pergunta, seções, prev/next.
 - Meses: N-1 = 01, 02 · N0 = 03, 04 · N+ = 05, 06 · 07 = todos os meses.

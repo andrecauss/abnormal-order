@@ -109,11 +109,62 @@ h1{ font-size: clamp(24px,3.4vw,38px); font-weight:900; line-height:1.15; }
   content:"→"; position:absolute; left:100%; top:50%; transform:translateY(-50%);
   width:26px; text-align:center; color:var(--muted);
 }
-.fs-num{ width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex:none; }
+.fs-num, .fs-ico{ width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex:none; }
+.fs-ico{ width:26px; height:26px; }
+.fs-ico svg{ width:15px; height:15px; }
 @media (max-width:640px){
   .flow-steps{ flex-direction:column; align-items:flex-start; gap:22px; }
   .flow-steps li:not(:last-child)::after{ content:"↓"; left:18px; top:100%; transform:none; width:auto; line-height:22px; }
 }
+
+/* Visuais: .bar (exemplos numéricos), .queue (fila), .audit (registro) */
+.bars{ display:flex; flex-direction:column; gap:8px; }
+.bar-row{ display:grid; grid-template-columns:52px minmax(0,1fr) 36px; align-items:end; gap:8px;
+  font:700 11px/26px 'JetBrains Mono',monospace; color:var(--muted); }
+.bar-row > :last-child{ text-align:right; color:var(--ink); }
+.bar{ position:relative; display:flex; height:26px; border-radius:6px; background:var(--bg); }
+.bar:has(.marker:not(.is-below) span){ margin-top:18px; }
+.bar:has(.marker.is-below span){ margin-bottom:18px; }
+.bar.is-empty{ background:none; border:1.5px dashed var(--line); }
+.seg{ flex:0 0 var(--w); display:flex; align-items:center; justify-content:center; overflow:hidden; white-space:nowrap;
+  font:800 11px 'JetBrains Mono',monospace; color:#fff; background:var(--accent); }
+.seg:first-of-type{ border-radius:6px 0 0 6px; }
+.seg:last-of-type{ border-top-right-radius:6px; border-bottom-right-radius:6px; }
+.is-soft{ background:var(--accent-tint); color:var(--accent); box-shadow:inset 0 0 0 1.5px var(--accent); }
+.is-hatched{ background:repeating-linear-gradient(135deg,var(--accent) 0 3px,var(--accent-tint) 3px 7px);
+  color:var(--ink); text-shadow:0 0 3px #fff,0 0 3px #fff; }
+.marker{ position:absolute; left:var(--x); top:-5px; bottom:-5px; margin-left:-1px; border-left:2px dashed var(--ink); }
+.marker span{ position:absolute; bottom:100%; left:-2px; padding-bottom:2px; white-space:nowrap;
+  font:800 10.5px 'JetBrains Mono',monospace; color:var(--ink); }
+.marker.to-left span{ left:auto; right:0; }
+.marker.is-below span{ bottom:auto; top:100%; padding:2px 0 0; }
+.key{ display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:10px; font-size:12px; font-weight:600; color:var(--muted); }
+.key span{ display:inline-flex; align-items:center; gap:6px; }
+.key i{ width:12px; height:12px; border-radius:3px; }
+.key i:not([class]){ background:var(--accent); }
+
+.queue{ list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+.queue li{ font:700 12.5px 'JetBrains Mono',monospace; padding:10px 12px; border-radius:10px; background:#fff; border:1.5px solid var(--line); }
+.queue li:first-child{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.queue li:first-child::before{ content:"1º · "; opacity:.75; }
+.q-exits{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.q-exit{ font-size:12.5px; font-weight:700; padding:6px 12px; border-radius:100px; background:var(--accent-tint); color:var(--accent); border:1px solid var(--accent); }
+.q-exit.is-out{ background:none; color:var(--muted); border:1px dashed var(--muted); }
+
+.audit dl{ display:grid; grid-template-columns:max-content 1fr; gap:8px 14px; align-items:baseline; }
+.audit dt{ font:700 10.5px 'JetBrains Mono',monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.audit dd{ font-size:14px; font-weight:700; }
+.audit s{ color:var(--muted); font-weight:600; }
+.audit ins{ text-decoration:none; color:#fff; background:var(--accent); border-radius:100px; padding:2px 10px; }
+
+/* Exemplo de ponta a ponta: cada passo herda --accent do domínio via style no .sec */
+.e2e-links{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.e2e-links a{
+  font:700 11.5px 'JetBrains Mono',monospace; letter-spacing:.03em; text-decoration:none;
+  padding:5px 11px; border-radius:100px; color:var(--accent); background:#fff; border:1px solid var(--accent);
+}
+.e2e-links a:hover{ background:var(--accent-tint); }
+.flow-steps a{ color:inherit; text-decoration:none; }
 
 .sec table{ width:100%; border-collapse:collapse; margin:14px 0; font-size:13.5px; }
 .sec table th, .sec table td{ text-align:left; padding:10px 14px; border:1px solid var(--line); }

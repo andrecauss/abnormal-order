@@ -21,7 +21,7 @@
   </div>
   <div class="dom-question">Qual é a participação histórica de cada combinação Customer–PN dentro do forecast do PN — e como isso vira o forecast individual de cada cliente?</div>
 
-  <div class="sec">
+  <div class="sec" id="entrada-saida">
     <h2>Entrada e saída</h2>
     <div class="ex-row io">
       <div class="ex">
@@ -37,67 +37,58 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s3-1">
     <h2>3.1 · Histórico de Demanda</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §3.1</div>
-      <p>Para cada combinação Customer–PN, utiliza-se uma janela móvel dos 6 meses imediatamente anteriores à competência.</p>
-      <ul>
-        <li>Todos os seis meses participam do cálculo.</li>
-        <li>Meses sem pedidos são considerados com quantidade zero.</li>
-        <li>Os zeros reduzem a média histórica da combinação.</li>
-        <li>A janela é recalculada a cada nova competência.</li>
-      </ul>
-      <code>Historical Average Customer–PN = Soma das quantidades dos últimos 6 meses / 6</code>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Olha os últimos 6 meses.</p>
       <p>Mês sem pedido conta zero.</p>
       <p>Zero puxa a média para baixo.</p>
-      <p>Todo mês a janela anda.</p>
+      <p>A média é a soma dos 6 meses dividida por 6, e todo mês a janela anda.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Ilustrativo · média com zeros</div>
-        <code>Pedidos jan–jun = 12, 0, 6, 0, 0, 18<br/>Σ = 36<br/>36 / 6 = 6</code>
-        <div class="ex-res">Historical Average = 6</div>
+        <div class="bars" role="img" aria-label="Pedidos de jan a jun: 12, 0, 6, 0, 0, 18. Média 6.">
+          <div class="bar-row"><span>jan</span><div class="bar"><span class="seg" style="--w:66.67%"></span><i class="marker" style="--x:33.33%"><span>média 6</span></i></div><span>12</span></div>
+          <div class="bar-row"><span>fev</span><div class="bar is-empty"><i class="marker" style="--x:33.33%"></i></div><span>0</span></div>
+          <div class="bar-row"><span>mar</span><div class="bar"><span class="seg" style="--w:33.33%"></span><i class="marker" style="--x:33.33%"></i></div><span>6</span></div>
+          <div class="bar-row"><span>abr</span><div class="bar is-empty"><i class="marker" style="--x:33.33%"></i></div><span>0</span></div>
+          <div class="bar-row"><span>mai</span><div class="bar is-empty"><i class="marker" style="--x:33.33%"></i></div><span>0</span></div>
+          <div class="bar-row"><span>jun</span><div class="bar"><span class="seg" style="--w:100%"></span><i class="marker" style="--x:33.33%"></i></div><span>18</span></div>
+        </div>
+        <div class="ex-res">Historical Average = 6 (36 ÷ 6)</div>
       </div>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s3-2">
     <h2>3.2 · Representatividade do Cliente</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §3.2</div>
-      <p>Após calcular a média de cada Customer–PN, calcula-se a participação daquele cliente no total histórico do PN.</p>
-      <code>Customer Representativeness (%) = Historical Average Customer–PN / Sum of Historical Averages for PN</code>
-      <p>Essa participação será utilizada para distribuir o forecast mensal do PN.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Compara cada cliente contra o total do mesmo PN.</p>
       <p>Quem comprou mais historicamente recebe uma fatia maior.</p>
       <p>A soma das fatias do PN vira 100%.</p>
+      <p>Essa fatia distribui o forecast mensal do PN.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Ilustrativo · mesmo PN</div>
-        <code>Cliente A média = 6<br/>Cliente B média = 18<br/>Σ = 24</code>
-        <div class="ex-res">A = 25%, B = 75%</div>
+        <div class="bar-row">
+          <span>Σ 24</span>
+          <div class="bar" role="img" aria-label="Cliente A 6 de 24 = 25%. Cliente B 18 de 24 = 75%.">
+            <span class="seg" style="--w:25%">A 25%</span>
+            <span class="seg is-soft" style="--w:75%">B 75%</span>
+          </div>
+          <span>100%</span>
+        </div>
+        <div class="ex-res">A: 6 ÷ 24 = 25% · B: 18 ÷ 24 = 75%</div>
       </div>
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s3-3">
     <h2>3.3 · Customer–PN sem histórico</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §3.3</div>
-      <p>Quando uma combinação Customer–PN não possui histórico nos seis meses:</p>
-      <code>Representativeness = 0%</code>
-      <p>O tratamento posterior será feito pela regra de Minimum Quantity.</p>
-      <p>A mesma lógica é aplicada a clientes novos.</p>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Sem histórico, não há fatia histórica.</p>
@@ -113,31 +104,14 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s3-4">
     <h2>3.4 · Override manual</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §3.4</div>
-      <p>É permitido realizar ajuste manual da quota de um Customer–PN.</p>
-      <p>Exemplo de aplicação:</p>
-      <ul>
-        <li>mudança de código de cliente;</li>
-        <li>necessidade de preservar uma referência histórica que não existe na nova chave;</li>
-        <li>situações excepcionais conhecidas pelo negócio.</li>
-      </ul>
-      <p>O override:</p>
-      <ul>
-        <li>vale somente para a competência específica;</li>
-        <li>não exige rebalanceamento das quotas dos demais clientes;</li>
-        <li>pode fazer com que a soma das quotas individuais seja diferente do forecast total do PN;</li>
-        <li>na competência seguinte, o cálculo volta automaticamente à metodologia padrão, salvo novo override.</li>
-      </ul>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>Dá para corrigir uma quota manualmente.</p>
-      <p>Vale só para aquele mês.</p>
-      <p>Não mexe nas quotas dos outros clientes.</p>
-      <p>No mês seguinte, volta ao cálculo padrão.</p>
+      <p>Serve para mudança de código, preservação de referência histórica ou exceção conhecida pelo negócio.</p>
+      <p>Vale só para aquele mês e não mexe nas quotas dos outros clientes.</p>
+      <p>A soma individual pode diferir do forecast do PN; no mês seguinte, volta ao cálculo padrão, salvo novo override.</p>
     </div>
     <div class="ex-row">
       <div class="ex">
@@ -148,14 +122,8 @@
     </div>
   </div>
 
-  <div class="sec">
+  <div class="sec" id="s3-5">
     <h2>3.5 · Forecast mensal</h2>
-    <blockquote class="rule">
-      <div class="lbl">Regra · doc §3.5</div>
-      <p>O forecast é recebido no nível PN.</p>
-      <p>O forecast do PN é distribuído aos clientes conforme a representatividade histórica.</p>
-      <code>Forecast Customer–PN = Forecast PN × Customer Representativeness (%)</code>
-    </blockquote>
     <div class="plain">
       <div class="lbl">Em poucas palavras</div>
       <p>O forecast chega por PN.</p>
@@ -165,7 +133,14 @@
     <div class="ex-row">
       <div class="ex">
         <div class="ex-lbl">Ilustrativo · distribuição</div>
-        <code>Forecast PN = 200<br/>A: 200 × 25% = 50<br/>B: 200 × 75% = 150</code>
+        <div class="bar-row">
+          <span>PN</span>
+          <div class="bar" role="img" aria-label="Forecast PN total 200. Cliente A 50 de 200 = 25%. Cliente B 150 de 200 = 75%.">
+            <span class="seg" style="--w:25%">A 50</span>
+            <span class="seg is-soft" style="--w:75%">B 150</span>
+          </div>
+          <span>200</span>
+        </div>
         <div class="ex-res">Forecast Customer–PN: A = 50, B = 150</div>
       </div>
     </div>
