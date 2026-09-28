@@ -58,6 +58,12 @@ h1 .accent{ color:var(--orange); }
 }
 .lc-chevron{ width:16px; height:16px; flex:none; }
 @media (max-width: 640px){ .lc-chevron{ transform:rotate(90deg); } }
+.lc-branch{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:6px 10px; margin-top:10px; }
+.lc-branch-pill{
+  font-size:12px; font-weight:700; color:var(--purple-2); background:#fff;
+  border:1px dashed var(--purple-2); border-radius:100px; padding:6px 14px;
+}
+.lc-branch-note{ font-size:12px; font-style:italic; color:var(--muted); }
 
 .step-tag{
   display:inline-block; margin-top:10px; max-width:100%;
