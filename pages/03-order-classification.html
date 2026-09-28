@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>03 · Order Classification — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+<style>
+  :root{ --accent:#7A3FE0; --accent-tint:#F2ECFD; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 03 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 L4 13 L9 13 L9 19 M9 19 L9 8 L14 8 L14 19 M14 19 L14 4 L19 4 L19 19"/></svg></div>
+    <h1>Order Classification</h1>
+  </div>
+  <div class="dom-question">O pedido, somado ao acumulado do mês do Customer–PN, ultrapassa o limite — e qual parte dele é Abnormal?</div>
+
+  <div class="sec">
+    <h2>5.1 · Tipos de pedido</h2>
+    <p>Existem dois tipos relevantes de pedido: <b>Regular</b> e <b>Urgente</b>.</p>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">Regular</div>
+        <p>Participa normalmente da avaliação de Abnormal Order.</p>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">Urgente</div>
+        <p>Nunca é Abnormal, nunca entra em On Hold por esta lógica e segue integralmente para o fluxo regular.</p>
+      </div>
+    </div>
+    <p>A quantidade urgente compõe o acumulado mensal Customer–PN. Por isso, pode consumir o limite e fazer com que um pedido Regular posterior seja classificado como Abnormal.</p>
+  </div>
+
+  <div class="sec">
+    <h2>6 · Acumulado mensal Customer–PN</h2>
+    <p>A avaliação ocorre em tempo real para cada linha de pedido.</p>
+    <div class="box">
+      <div class="lbl">Chave conceitual</div>
+      <code>Customer + PN + Competência</code>
+    </div>
+    <p>O sistema compara o acumulado mensal válido com o limite calculado para aquela combinação.</p>
+    <div class="box">
+      <div class="lbl">Comparação</div>
+      <code>Monthly Accumulated Quantity vs. Customer–PN Final Limit</code>
+    </div>
+    <p>Cada competência é independente. Na virada do mês, a mudança de competência fecha o período, sem carry-over de limite ou acumulado para o mês seguinte.</p>
+  </div>
+
+  <div class="sec">
+    <h2>7 · Classificação Normal e Abnormal</h2>
+    <p>Até o limite, a quantidade é <b>NORMAL</b>. Somente a quantidade acima do limite é <b>ABNORMAL</b>.</p>
+    <p>Atingir exatamente o limite não caracteriza anormalidade.</p>
+    <div class="box">
+      <div class="lbl">Fórmulas</div>
+      <code>Normal Qty = MIN(Order Qty, Remaining Limit)<br/>Abnormal Qty = Order Qty − Normal Qty</code>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>7.1 · Exemplo</h2>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">Exemplo do doc · excede o limite</div>
+        <code>Limite = 20<br/>Acumulado antes = 15<br/>Pedido = 10</code>
+        <div class="ex-res">5 Normal · 5 Abnormal</div>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">Ilustrativo · atinge exatamente</div>
+        <code>Limite = 20<br/>Acumulado antes = 15<br/>Pedido = 5</code>
+        <div class="ex-res">5 Normal · 0 Abnormal</div>
+      </div>
+    </div>
+    <p>A referência entre as partes Normal e Abnormal e a linha original do pedido é preservada pelo sistema.</p>
+  </div>
+
+  <div class="sec">
+    <h2>8 · Classificação permanente</h2>
+    <p>Uma vez classificada como <b>Abnormal</b>, a quantidade mantém essa classificação permanentemente.</p>
+    <p>Eventos posteriores não removem a classificação, incluindo:</p>
+    <ul>
+      <li>liberação</li>
+      <li>atendimento</li>
+      <li>Back Order</li>
+      <li>cancelamento</li>
+      <li>alteração posterior do acumulado</li>
+      <li>capacidade liberada por cancelamento de outros pedidos</li>
+    </ul>
+    <div class="box">
+      <div class="lbl">Conceito</div>
+      <code>Abnormal = atributo histórico permanente<br/>On Hold = status operacional temporário</code>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>9 · Cancelamentos</h2>
+    <p>O cliente não pode alterar a quantidade de uma linha existente. Também não existe cancelamento parcial da linha.</p>
+    <p>A linha é mantida integralmente ou cancelada integralmente.</p>
+    <p>Quando cancelada:</p>
+    <ul>
+      <li>sai da fila On Hold</li>
+      <li>deixa de participar dos mecanismos futuros de liberação</li>
+      <li>filtros do acumulado histórico passam a desconsiderar sua quantidade</li>
+      <li>sua classificação histórica Abnormal permanece</li>
+    </ul>
+    <p>A capacidade liberada na competência corrente pode ser usada por novos pedidos do mesmo Customer–PN, mas não provoca reclassificação ou liberação automática de linhas Abnormal/On Hold já existentes.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">Pedido urgente nunca é Abnormal, mas consome o acumulado</div>
+      <div class="principle-chip">Somente o excedente ao limite é Abnormal</div>
+      <div class="principle-chip">Abnormal é uma classificação permanente</div>
+      <div class="principle-chip">Cancelamentos deixam de consumir o acumulado, mas não apagam a classificação histórica Abnormal</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="02-business-rules-quota.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Anterior: Business Rules &amp; Quota</a>
+    <a class="nav-btn next" href="04-on-hold-management.html">Próximo: On Hold Management<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>

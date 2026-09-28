@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>07 · Governance &amp; Audit — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+<style>
+  :root{ --accent:#3B4258; --accent-tint:#EEF0F4; } .dom-badge{ background:var(--ink-panel); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 07 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+    <h1>Governance &amp; Audit</h1>
+  </div>
+  <div class="dom-question">Quem pode agir sobre quotas, uploads e liberações — e como cada ação sensível fica rastreada?</div>
+
+  <div class="sec">
+    <p>Governance &amp; Audit é um domínio transversal que se aplica a todos os demais domínios; ele controla permissões e garante a rastreabilidade de ações sensíveis.</p>
+  </div>
+
+  <div class="sec">
+    <h2>17.1 · Permissões</h2>
+    <p>Uma tabela de permissões define quais usuários podem executar ações como:</p>
+    <ul>
+      <li>ajustes de quota</li>
+      <li>uploads, incluindo reconciliação e liberações</li>
+      <li>liberações</li>
+      <li>ações manuais</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <h2>17.2 · Auditoria</h2>
+    <p>O sistema mantém rastreabilidade das alterações relevantes. Essa trilha de auditoria é o único mecanismo de governança sobre a autoridade do Manual Release.</p>
+    <div class="box">
+      <div class="lbl">Exemplo de campos rastreados — override manual de quota</div>
+      <ul>
+        <li>usuário responsável</li>
+        <li>data/hora</li>
+        <li>valor original → valor alterado</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>17.3 · Uploads</h2>
+    <p>O mesmo modelo de arquivo pode ser usado para refletir liberações no sistema, incluindo reconciliação, Inventory Release e Manual Release por upload. O arquivo não precisa identificar o motivo da liberação, porque a lógica que decidiu a liberação ocorre antes do upload.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Esclarecido na revisão de 27/09</h2>
+    <div class="box">
+      <div class="lbl">Seção 20.1 do doc</div>
+      <p><b>Pergunta:</b> Dois pedidos do mesmo Customer–PN em paralelo geram race condition no acumulado?</p>
+      <p><b>Decisão:</b> Não acontece — limitação sistêmica impede processamento paralelo real. Fechado como fato; não é necessário lock.</p>
+    </div>
+    <div class="box">
+      <div class="lbl">Seção 20.4 do doc</div>
+      <p><b>Pergunta:</b> O que acontece com overrides ou liberações manuais concorrentes no mesmo Customer–PN?</p>
+      <p><b>Decisão:</b> Não há regra sistêmica de precedência — autoridade do usuário é absoluta. Governança inteiramente via trilha de auditoria.</p>
+    </div>
+    <p><a href="../index.html#review" style="color:var(--accent); font-weight:700;">Ver todos os esclarecimentos da revisão →</a></p>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">Toda ação sensível é rastreada</div>
+      <div class="principle-chip">Autoridade do Manual Release é absoluta — governança via auditoria</div>
+      <div class="principle-chip">A lógica da liberação acontece antes do upload</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="06-fulfillment-back-order.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Anterior: Fulfillment &amp; Back Order</a>
+    <a class="nav-btn next" href="../index.html">Voltar à Visão Geral<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>

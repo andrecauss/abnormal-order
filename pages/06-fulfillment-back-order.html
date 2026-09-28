@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>06 · Fulfillment &amp; Back Order — Abnormal Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/detail.css">
+<style>
+  :root{ --accent:#0E7C86; --accent-tint:#E3F4F5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back-link" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Abnormal Order — Visão Geral</a>
+
+  <div class="dom-eyebrow">Domínio 06 / 07</div>
+  <div class="dom-head">
+    <div class="dom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M3 10.5 L12 4 L21 10.5 V21 H3 Z"/><rect x="9.6" y="13.5" width="4.8" height="7.5" fill="currentColor" stroke="none"/></svg></div>
+    <h1>Fulfillment &amp; Back Order</h1>
+  </div>
+  <div class="dom-question">Depois de liberada, a linha é atendida — e o que acontece quando não há disponibilidade?</div>
+
+  <div class="sec">
+    <h2>16 · Retorno ao fluxo regular</h2>
+    <p>Toda quantidade liberada do On Hold retorna ao <b>Fluxo Logístico Regular</b>.</p>
+    <p>Não existe, no escopo atual, prioridade logística especial para pedidos anteriormente classificados como Abnormal.</p>
+    <div class="box">
+      <div class="lbl">O fluxo pode incluir</div>
+      <code>Alocação → Separação → Expedição → Entrega</code>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Quando não há atendimento</h2>
+    <p>Quando não houver condição para atendimento após a liberação, o saldo segue pelas regras normais do processo e pode permanecer como <b>Back Order</b>.</p>
+    <p>A classificação Abnormal permanece independentemente de o pedido terminar como Attended ou Back Order.</p>
+  </div>
+
+  <div class="sec">
+    <h2>On Hold x Back Order</h2>
+    <div class="ex-row">
+      <div class="ex">
+        <div class="ex-lbl">On Hold</div>
+        <code>Bloqueio causado pela lógica Abnormal Order</code>
+        <div class="ex-res">Antes da liberação</div>
+      </div>
+      <div class="ex">
+        <div class="ex-lbl">Back Order</div>
+        <code>Demanda liberada no fluxo regular, porém ainda não atendida</code>
+        <div class="ex-res">Depois da liberação</div>
+      </div>
+    </div>
+    <p>São conceitos diferentes: On Hold é um bloqueio antes da liberação; Back Order é um estado sem atendimento depois da liberação.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Princípios relacionados</h2>
+    <div class="principle-row">
+      <div class="principle-chip">Após liberação, o pedido volta ao fluxo logístico regular</div>
+      <div class="principle-chip">Back Order não é On Hold</div>
+      <div class="principle-chip">Abnormal é uma classificação permanente</div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <a class="nav-btn" href="05-release-management.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Anterior: Release Management</a>
+    <a class="nav-btn next" href="07-governance-audit.html">Próximo: Governance &amp; Audit<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+</div>
+</body>
+</html>
