@@ -28,7 +28,13 @@ Antes de qualquer mudança, leia `docs/agent-context/` (principalmente `architec
 - Links relativos: `../index.html`, `../css/...`, páginas vizinhas sem prefixo.
 - Sequência de navegação: `index → 01 → 02 → 03 → 04 → 05 → 06 → 07 → index`.
 
-Especificação de conteúdo por página: `docs/BRIEFING_claude_code.md` (os nomes de arquivo antigos nele — `abnormal_order_poster.html`, `abnormal_order_business_domains.md` — hoje são `index.html` e `docs/business-domains.md`).
+Conteúdo de cada página: seções correspondentes de `docs/business-domains.md` + decisões da revisão (`index.html#review`) + notas de implementação no próprio doc. `docs/BRIEFING_claude_code.md` é histórico — não seguir.
+
+## Índice × páginas
+
+- **`index.html` é sempre resumido:** por domínio, só pergunta, step-tag, resumo de 1–2 frases e "Ver detalhes →". Nada de fórmulas, exemplos, listas de regras, input/output.
+- **Página dedicada é sempre detalhada:** regra do doc, explicação simples, exemplos, fluxos, entrada e saída, esclarecimentos da revisão.
+- Conteúdo novo vai para a página do domínio; o índice só ganha um resumo se o resumo atual deixar de ser verdadeiro.
 
 ## Como verificar
 

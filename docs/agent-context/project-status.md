@@ -48,6 +48,8 @@ Sem suíte de testes. Rodar `python -m http.server 8765` na raiz (ou a config `s
 
 ## Backlog
 
-- [ ] Decidir com o usuário: `#lifecycle` deve mostrar a saída ON HOLD → CANCELLED (§18)?
-- [ ] Decidir com o usuário: `#principles` deve listar os 16 princípios de §19 ou manter os 7?
-- [ ] Atualizar `docs/BRIEFING_claude_code.md` ou marcá-lo como histórico (nomes de arquivo antigos).
+- [x] `#lifecycle`: saída ON HOLD → Cancelado + passo 4 "Fulfillment · Released" (28/09).
+- [x] `#principles`: mantém os 7 — regra do usuário: índice sempre resumido, página dedicada sempre detalhada (registrada no `AGENTS.md`).
+- [x] `docs/BRIEFING_claude_code.md` marcado como histórico e removido das instruções do `AGENTS.md`.
+
+Nenhuma pendência aberta.

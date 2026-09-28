@@ -1,5 +1,7 @@
 # Briefing — Páginas de detalhe do Abnormal Order
 
+> **HISTÓRICO — NÃO USAR COMO INSTRUÇÃO (desde 28/09/2026).** Este briefing criou as primeiras páginas de detalhe e está desatualizado: nomes de arquivo antigos, padrão de página anterior ao didático, e o domínio 06 ainda como "Fulfillment & Back Order". O padrão atual está em `docs/agent-context/design-system.md` ("Padrão de página didática") e o estado atual em `docs/agent-context/features.md`.
+
 Cole este arquivo inteiro como prompt no Claude Code, dentro da pasta `abnormal_order/`.
 
 ## Contexto

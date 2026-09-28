@@ -22,8 +22,8 @@ Cada página é didática: "Entrada e saída" no topo e, por seção, a regra ci
 | 6 | Fulfillment | N+ | `pages/06-fulfillment.html` | IMPLEMENTED_DIFFERENTLY | Renomeado de "Fulfillment & Back Order" (decisão 28/09). Estado final do projeto = Released; Back Order só como nota fora de escopo. |
 | 7 | Governance & Audit | todos | `pages/07-governance-audit.html` | IMPLEMENTED | §17.1–17.3, revisões 20.1 e 20.4. |
 | — | Navegação índice → páginas | — | `index.html` (cards e `.gov-panel` são `<a>`) | IMPLEMENTED | Sequência prev/next `index → 01 → … → 07 → index`. |
-| — | Estados conceituais (§18, com CANCELLED) | — | `index.html#lifecycle` | PARTIALLY_IMPLEMENTED | Ribbon mostra só o caminho feliz; sem ON HOLD → CANCELLED. Aguarda decisão do usuário. |
-| — | Princípios centrais (§19, 16 itens) | — | `index.html#principles` + chips nas páginas | PARTIALLY_IMPLEMENTED | Índice mostra 7 de 16; os demais aparecem distribuídos em "Princípios relacionados" das páginas. |
+| — | Estados conceituais (§18, com CANCELLED) | — | `index.html#lifecycle` + páginas 03/04 | IMPLEMENTED | Ribbon resumido: 4 passos até "Fulfillment · Released" + saída direta On Hold → Cancelado. Caminhos Normal e Segregation OFF detalhados nas páginas 03 e 04. |
+| — | Princípios centrais (§19, 16 itens) | — | `index.html#principles` + chips nas páginas | IMPLEMENTED | Índice resumido com 7 (decisão do usuário, 28/09); os demais em "Princípios relacionados" das páginas. |
 | — | Esclarecimentos da revisão 20.1–20.6 | — | `index.html#review` | IMPLEMENTED | Lista canônica; páginas 02, 04, 05, 07 linkam para cá. |
 | — | Indicadores | — | `index.html#metrics` | IMPLEMENTED | Exemplos, sem fonte no doc de negócio. |
 

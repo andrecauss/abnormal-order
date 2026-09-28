@@ -16,7 +16,7 @@ abnormal_order/
 │   └── template-draft.css      regras só do template (inclui as que saíram de poster.css)
 ├── docs/
 │   ├── business-domains.md     fonte de verdade do negócio
-│   ├── BRIEFING_claude_code.md especificação de conteúdo das páginas 02–07
+│   ├── BRIEFING_claude_code.md histórico (briefing da rodada 0) — não usar como instrução
 │   └── agent-context/          memória compartilhada dos agentes
 ├── AGENTS.md                   regras para o Coder (Codex)
 ├── CLAUDE.md                   regras do Orchestrator (importa AGENTS.md)
